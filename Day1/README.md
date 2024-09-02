@@ -47,10 +47,7 @@
 ## Docker Overview
 
 ## High-Level Docker Architecture
-<pre>
-  
-</pre>
-
+![Docker]()
 ## Container Orchestration Overview
 <pre>
   
