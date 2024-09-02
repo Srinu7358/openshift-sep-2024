@@ -231,6 +231,7 @@ Expected output
 - as per recommended industry best practice, one main application per Pod is better
 - Pod is the smallest unit that can be deployed within Kubernetes/Openshift
 </pre>
+![pod](pod.png)
 
 ## Info - ReplicaSet Overview
 <pre>
