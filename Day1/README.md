@@ -262,3 +262,20 @@ oc get nodes
 oc get nodes -o wide
 ```
 
+## Lab - Creating a Pod in docker 
+```
+docker images
+
+docker pull gcr.io/google_containers/pause-amd64:3.1
+
+docker images
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/1fda8ebd-1cb7-4fda-82b8-734730f8cc0c)
+
+
+## Info - Kubernetes/Openshift Control Plane Components
+```
+```
+
