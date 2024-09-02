@@ -81,6 +81,17 @@ docker images
 Expected output
 ![image](https://github.com/user-attachments/assets/4bac0c5b-5b43-4d8b-82c1-a59b2248a904)
 
+## Demo - Creating an nginx container
+```
+docker run -d --name nginx1 --hostname nginx1 nginx:latest
+docker ps
+docker ps -a
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/bc33264a-0bdd-41c8-8506-7a507dc647ae)
+
+
 ## Container Image Overview
 <pre>
 - Container image is template or specification or blueprint of a container
