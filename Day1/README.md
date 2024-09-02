@@ -137,6 +137,26 @@ Expected output
 - some containers may appear like a OS, but technically they are just application process that runs in a separate namespace
 </pre>  
 
+## Info - Container Runtime
+<pre>
+- is a low-level software that is used to manage Containers and Images
+- it is not so user-friendly, hence end-users generally don't use this directly
+- examples
+  - runC 
+  - CRI-O
+</pre>  
+
+## Info - Container Engines
+<pre>
+- is a high-level software that is used to manage containers and images
+- it internally uses Container Runtime to manage containers and images
+- it is very user-friendly
+- examples
+  - Docker 
+  - Podman
+  - containerd
+</pre>  
+
 ## Container Orchestration Overview
 <pre>
 - Container Orchestration platform tools helps us manage our containerized application workloads
