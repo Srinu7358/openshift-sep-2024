@@ -49,6 +49,26 @@
 ## High-Level Docker Architecture
 ![Docker](DockerHighLevelArchitecture.png)
 
+## Demo - Installing Docker Community edition in RHEL or Oracle Linux
+```
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo usermod -aG docker $USER
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo systemctl status docker
+docker --version
+docker info
+docker images
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/d44d038b-18e7-4228-8aec-d2707589500c)
+![image](https://github.com/user-attachments/assets/0575593b-4168-4657-ab6d-1437dfaba83a)
+![image](https://github.com/user-attachments/assets/3cc2e47a-52be-4512-bfde-289c16c629c6)
+
+
 ## Container Image Overview
 <pre>
 - Container image is template or specification or blueprint of a container
