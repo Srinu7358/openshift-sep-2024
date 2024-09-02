@@ -375,5 +375,11 @@ Expected output
   - coreDNS (Pod)
 </pre>
 
+## Info - Openshift client tools
+<pre>
+oc - is the command-line openshift client
+kubectl - is the kubernetes command-line client
+both oc and kubectl are supported in openshift cluster
+</pre>
 
 
