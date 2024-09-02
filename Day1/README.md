@@ -217,6 +217,7 @@ Expected output
   5. Using the Kubernetes operators, the Red Hat Openshift team has many additional features on top of Kubernetes
 - Openshift version upto 3 - supported many different container runtime/engines including Docker
 - Openshift version 4 and above - only supports Podman Container Engine and CRI-O Container Runtime
+- Due to security vulnerabilities issues in Docker, 
 </pre>
 
 ## High-Level Openshift Architecture
