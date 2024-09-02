@@ -150,6 +150,9 @@ Expected output
   - based on traffic to one's application individual applications can be scaled up/down on demand manually/automatically
   - upgrading/downgrading your already live applications from one version to the other without any down time using Rolling update
   - exposing your applications within cluster or to external world using services
+- it is a self-healing platform
+  - it can repair itself to some extent
+  - it can repair your application when it is found faulty
 </pre>
 
 ## Info - Docker SWARM Overview
@@ -175,6 +178,9 @@ Expected output
 - Kubernetes supports RBAC, Custom Resource Definition (CRD) to extend the Kubernetes API to add new type of resources
 - Kubernetes also allows us to develop and deploy custom operators to manage our custom resources
 - Kubernetes operators - is a combination of many Custom Resources + Customer Controllers
+- supports inbuilt monitoring features
+  - it can check the health of our application, when it finds your application is not responding, it can repair it or replace it with another good healthy instance of your application
+  - it supports inbuilt load-balancing
 </pre>  
 
 ## Red Hat Openshift Overview
@@ -188,6 +194,7 @@ Expected output
   3. Out of the box - Private Container Registry
   4. Routes - a new feature only available in Openshift which is developed on top of Kubernetes Ingress
   5. Using the Kubernetes operators, the Red Hat Openshift team has many additional features on top of Kubernetes
+
 </pre>
 
 ## High-Level Openshift Architecture
