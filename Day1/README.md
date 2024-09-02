@@ -201,6 +201,7 @@ Expected output
 - supports inbuilt monitoring features
   - it can check the health of our application, when it finds your application is not responding, it can repair it or replace it with another good healthy instance of your application
   - it supports inbuilt load-balancing
+- supports any container runtime/engine as long as there is an implemention of CRI(Container Runtime Interface) to interact with those runtime/engine
 </pre>  
 
 ## Red Hat Openshift Overview
@@ -214,7 +215,8 @@ Expected output
   3. Out of the box - Private Container Registry
   4. Routes - a new feature only available in Openshift which is developed on top of Kubernetes Ingress
   5. Using the Kubernetes operators, the Red Hat Openshift team has many additional features on top of Kubernetes
-
+- Openshift version upto 3 - supported many different container runtime/engines including Docker
+- Openshift version 4 and above - only supports Podman Container Engine and CRI-O Container Runtime
 </pre>
 
 ## High-Level Openshift Architecture
