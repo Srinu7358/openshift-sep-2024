@@ -383,7 +383,7 @@ both oc and kubectl are supported in openshift cluster
 </pre>
 
 
-## Day - Feedback ( Kindly complete this before your leave for today )
+## Day1 - Feedback ( Kindly complete this before your leave for today )
 <pre>
 https://survey.zohopublic.com/zs/GtCUrD  
 </pre>
