@@ -267,14 +267,29 @@ oc get nodes -o wide
 ## Lab - Creating a Pod in docker 
 ```
 docker images
-
 docker pull gcr.io/google_containers/pause-amd64:3.1
-
 docker images
+
+docker run -d --name nginx_pause --hostname nginx gcr.io/google_containers/pause-amd64:3.1
+docker run -d --name nginx --network=container:nginx_pause nginx:latest
+docker ps
+docker inspect nginx_pause | grep IPA
+docker exec -it nginx sh
+hostname -i
+hostname
+apt update && apt install net-tools iputils-ping
+ifconfig
+exit
 ```
 
 Expected output
 ![image](https://github.com/user-attachments/assets/1fda8ebd-1cb7-4fda-82b8-734730f8cc0c)
+![image](https://github.com/user-attachments/assets/881f4228-bebd-46c0-8910-1523bb1b4ce0)
+![image](https://github.com/user-attachments/assets/604206a2-b978-4c04-9033-2a4eb9c7fa1f)
+
+![image](https://github.com/user-attachments/assets/015ee964-997c-45ca-96b6-5d25a412f998)
+
+
 
 
 ## Info - Kubernetes/Openshift Control Plane Components
