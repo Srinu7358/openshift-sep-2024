@@ -67,6 +67,8 @@ Expected output
 ![image](https://github.com/user-attachments/assets/d44d038b-18e7-4228-8aec-d2707589500c)
 ![image](https://github.com/user-attachments/assets/0575593b-4168-4657-ab6d-1437dfaba83a)
 ![image](https://github.com/user-attachments/assets/3cc2e47a-52be-4512-bfde-289c16c629c6)
+![image](https://github.com/user-attachments/assets/f84d3e86-35ae-4a60-8cb5-4188fbdcf474)
+![image](https://github.com/user-attachments/assets/a733e6a1-37ce-4fe5-a7a5-32fcf4454ea4)
 
 
 ## Container Image Overview
