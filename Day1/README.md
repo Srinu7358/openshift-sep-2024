@@ -49,6 +49,36 @@
 ## High-Level Docker Architecture
 ![Docker](DockerHighLevelArchitecture.png)
 
+## Container Image Overview
+<pre>
+- Container image is template or specification or blueprint of a container
+- It is similar to Windows-12-OS-DVD-image.iso 
+- Just like how we are able to use windows DVD iso image and install Windows 12 OS on multiple machine, on the similar fashion, using a Container Image one can create multiple containers
+- Containers are served by Container Registries
+</pre>  
+
+## Container Registries Overview
+<pre>
+- Docker supports 3 types of Container Registries
+  1. Local Docker Registry
+  2. Private Docker Registry and
+  3. Remote Docker Registry ( Docker Hub Website -  hub.docker.com )
+- Local Docker Registry is just a folder, where all the docker images are stored
+- Private Docker Registry is server that can be setup using JFrog Artifactory or Sonatype Nexus
+- Remote Docker Registry is a website that has a whole lot of Docker Images
+</pre>  
+
+## Containers Overview
+<pre>
+- Container is an instance of one Container Image
+- Whatever software tools are present in the Container Image are readily available for use in any container intance
+- containers gets its own Private IP address
+- containers get its own file system
+- containers supports one or more shells
+- containers has its own network stack ( 7 OSI Layers )
+- containers has its own software defined network cards ( Network Interface Card - NICs )
+</pre>  
+
 ## Container Orchestration Overview
 <pre>
   
