@@ -55,6 +55,10 @@
 - It is similar to Windows-12-OS-DVD-image.iso 
 - Just like how we are able to use windows DVD iso image and install Windows 12 OS on multiple machine, on the similar fashion, using a Container Image one can create multiple containers
 - Containers are served by Container Registries
+- Examples
+  - Ubuntu Container Image ( ubuntu:24.04 )
+  - Nginx Container Image ( nginx:latest )
+  - 
 </pre>  
 
 ## Container Registries Overview
@@ -77,6 +81,9 @@
 - containers supports one or more shells
 - containers has its own network stack ( 7 OSI Layers )
 - containers has its own software defined network cards ( Network Interface Card - NICs )
+- each container represents one instance of an application
+- containers are not OS
+- some containers may appear like a OS, but technically they are just application process that runs in a separate namespace
 </pre>  
 
 ## Container Orchestration Overview
