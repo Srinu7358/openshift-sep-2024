@@ -221,6 +221,4 @@ Expected output
 </pre>
 
 ## High-Level Openshift Architecture
-<pre>
-  
-</pre>
+![Architecture](openshiftArchitecture.png)
