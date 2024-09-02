@@ -45,6 +45,12 @@
 </pre>
 
 ## Docker Overview
+<pre>
+- Docker is developed in Go lang by a company named Docker Inc
+- its comes in 2 flavours
+  1. Docker Community Edition
+  2. Docker Enterprise Edition
+</pre>
 
 ## High-Level Docker Architecture
 ![Docker](DockerHighLevelArchitecture.png)
@@ -104,7 +110,6 @@ Expected output
 - Examples
   - Ubuntu Container Image ( ubuntu:24.04 )
   - Nginx Container Image ( nginx:latest )
-  - 
 </pre>  
 
 ## Container Registries Overview
@@ -140,15 +145,49 @@ Expected output
   1. Docker SWARM - Docker's native Container Orchestration Platform
   2. Google Kubernetes - Free & Production grade Container Orchestration Platform
   3. Red Hat Openshift - Enterprise Paid software - Red Hat's Distribution of Kubernetes
+- General features supported
+  - provides an environment to make your containerized application works Highly Available (HA)
+  - based on traffic to one's application individual applications can be scaled up/down on demand manually/automatically
+  - upgrading/downgrading your already live applications from one version to the other without any down time using Rolling update
+  - exposing your applications within cluster or to external world using services
 </pre>
 
-## Docker SWARM Overview
+## Info - Docker SWARM Overview
 <pre>
+- this is Docker Inc's Container Orchestration Platform
+- it only supports managing Docker containerized application workloads
+- it is pretty easy to install and learn
+- can be installed on a laptop with pretty basic configuation as well as it is very light weight
+- good for POC or learning purpose
+- not production grade
 </pre> 
+
+## Info - Google Kubernetes Overview
+<pre>
+- free and opensource container orchestration platform developed by Google along with many open source contributors
+- it is production grade
+- free for personal and commercial use
+- as it is opensource, we won't get support from Google
+- only supports command line interface (CLI)
+- doesn't support web console
+- Kubernetes does provide some basic Dashboard but it is considered a security vulnerability, hence no one uses the Kubernetes Dashboard
+- Rancher is opensource webconsole for Google Kubernetes
+- Kubernetes supports RBAC, Custom Resource Definition (CRD) to extend the Kubernetes API to add new type of resources
+- Kubernetes also allows us to develop and deploy custom operators to manage our custom resources
+- Kubernetes operators - is a combination of many Custom Resources + Customer Controllers
+</pre>  
 
 ## Red Hat Openshift Overview
 <pre>
-  
+- Red Hat Openshift is developed on top of Google Kubernetes
+- supports command line interface and webconsole(GUI)
+- supports Role based access control (RBAC), hence multiple users can be created with different level of access to Openshift cluster
+- supports many additional features on top of all the Kubernetes features
+  1. User Management
+  2. Pre-integrated monitoring tools ( Prometheus & Grafana Dashboards )
+  3. Out of the box - Private Container Registry
+  4. Routes - a new feature only available in Openshift which is developed on top of Kubernetes Ingress
+  5. Using the Kubernetes operators, the Red Hat Openshift team has many additional features on top of Kubernetes
 </pre>
 
 ## High-Level Openshift Architecture
