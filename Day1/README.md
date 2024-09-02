@@ -76,10 +76,13 @@ Expected output
 docker images
 docker pull nginx:latest
 docker images
+docker pull redis:7.4
+docker images
 ```
 
 Expected output
 ![image](https://github.com/user-attachments/assets/4bac0c5b-5b43-4d8b-82c1-a59b2248a904)
+![image](https://github.com/user-attachments/assets/2c69bfba-fb50-4a7b-a592-de53f1ae8d86)
 
 ## Lab - Creating an nginx container
 ```
