@@ -222,3 +222,33 @@ Expected output
 
 ## High-Level Openshift Architecture
 ![Architecture](openshiftArchitecture.png)
+
+
+# Info - Pod Overview
+<pre>
+- Pod is a collection of related containers
+- it is configuration object that is stored and maitained within etcd key-value database by API server
+- as per recommended industry best practice, one main application per Pod is better
+- Pod is the smallest unit that can be deployed within Kubernetes/Openshift
+</pre>
+
+## Info - ReplicaSet Overview
+<pre>
+- it is a configuration object that is stored and maintained within etcd key-value database by API server
+- it tells how many instance of a particular Pod type should be running at point of time
+- this configuration object is consumed by ReplicaSet controller
+- it the ReplicaSet controller which manages the Pod instances
+- the ReplicaSet controller is the one which supports scale up/down
+</pre>
+
+## Info - Deployment Overview
+<pre>
+- stateless applications are normally deployed as a deployment
+- it is a configuration object that is stored and maintained within etcd database by API server
+- it describes
+  - name of the application deployment
+  - number of Pod instances expected to be running
+  - container image and version that must be used to create Pod
+- it supporrs rolling update
+- this configuration object is consumed by Deployment Controller
+</pre>
