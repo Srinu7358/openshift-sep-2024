@@ -286,7 +286,6 @@ Expected output
 ![image](https://github.com/user-attachments/assets/1fda8ebd-1cb7-4fda-82b8-734730f8cc0c)
 ![image](https://github.com/user-attachments/assets/881f4228-bebd-46c0-8910-1523bb1b4ce0)
 ![image](https://github.com/user-attachments/assets/604206a2-b978-4c04-9033-2a4eb9c7fa1f)
-
 ![image](https://github.com/user-attachments/assets/015ee964-997c-45ca-96b6-5d25a412f998)
 
 
@@ -295,4 +294,83 @@ Expected output
 ## Info - Kubernetes/Openshift Control Plane Components
 ```
 ```
+
+## Info - Understanding Red Hat Openshift installation
+
+<pre>
+- Assume we wish to have 3 master nodes with 3 worker nodes
+- each of these nodes can be a Virtual Machine in on-prem server or it could be a physical in your office or it could be an ec2 in aws or it could be an azure vm in azure cloud
+- OpenShift master nodes will accept only Red Hat Enterprise Core OS as the Operating System
+- The Red Hat Enterprise Core OS  (RHCOS)
+  - it comes Podman Container Engine and CRI-O Container Runtime pre-installed
+- Openshift worker nodes has opt for either Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Core Linux (RHCOS)
+- Bastion Virtual Machine (Helper Virtual Machine)
+  - This is where we will install DNS Server
+  - This is where we will install DHCP Server
+  - This is where we will install HAProxy Load Balancer server
+  - The HA Proxy Load Balancer will host the following
+    - Red Hat Enterprise Core OS Image
+    - Red Hat Openshift master node ignition file
+    - Red Hat Openshift worker node ignition file
+    - Red Hat Openshift bootstrap node ignition file
+- BootStrap Virtual Machine ( Temporary VM to setup Openshift master nodes )
+  - In order to install openshift, the openshift installer creates a simple Kubernetes cluster within BootStrap Virtual Machine
+  - The BootStrap Virtual Machine - Kubernetes cluster installs the required openshift master node components into master-1, master-2 and master-3 VMs
+  - Once the Kubernetes cluster running in BootStrap VMs finds the master-1, master-2 and master-3 nodes in openshift are found to be stable, the Kubernetes cluster running in BootStrap VM is no more required
+  - The sole purpose of BootStrap Virtual Machine is to create a 3 node master cluster in Openshift
+  - In most case, people prefer disposing this VM once the 3 openshift master nodes are up and running as a cluster
+- Master Node 1
+  - We need to Red Hat Enterprise Core OS as an Operating Sytem
+  - RHCOS comes with 
+    - preinstalled Podman Container Engine and CRI-O container runtime
+  - Control Plane Components will be running
+    - API server (Pod)
+    - etcd database (Pod)
+    - controller managers (Pod)
+    - scheduler (Pod)
+- Master Node 2
+  - We need to Red Hat Enterprise Core OS as an Operating Sytem
+  - RHCOS comes with 
+    - preinstalled Podman Container Engine and CRI-O container runtime
+  - Control Plane Components will be running
+    - API server (Pod)
+    - etcd database (Pod)
+    - controller managers (Pod)
+    - scheduler (Pod)
+- Master Node 3
+  - We need to Red Hat Enterprise Core OS as an Operating Sytem
+  - RHCOS comes with 
+    - preinstalled Podman Container Engine and CRI-O container runtime
+  - Control Plane Components will be running
+    - API server (Pod)
+    - etcd database (Pod)
+    - controller managers (Pod)
+    - scheduler (Pod)
+  - kube-proxy (Pod)
+  - kubelet (service)
+  - coreDNS (Pod)
+- Worker Node 1
+  - We need to Red Hat Enterprise Core OS as an Operating Sytem
+  - RHCOS comes with 
+    - preinstalled Podman Container Engine and CRI-O container runtime
+  - kube-proxy (Pod)
+  - kubelet (service)
+  - coreDNS (Pod)
+- Worker Node 2
+  - We need to Red Hat Enterprise Core OS as an Operating Sytem
+  - RHCOS comes with 
+    - preinstalled Podman Container Engine and CRI-O container runtime
+  - kube-proxy (Pod)
+  - kubelet (service)
+  - coreDNS (Pod)
+- Worker Node 3
+  - We need to Red Hat Enterprise Core OS as an Operating Sytem
+  - RHCOS comes with 
+    - preinstalled Podman Container Engine and CRI-O container runtime
+  - kube-proxy (Pod)
+  - kubelet (service)
+  - coreDNS (Pod)
+</pre>
+
+
 
