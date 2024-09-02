@@ -231,6 +231,7 @@ Expected output
 - as per recommended industry best practice, one main application per Pod is better
 - Pod is the smallest unit that can be deployed within Kubernetes/Openshift
 - all the containers within a Pod, shares the IP address, ports, etc.,
+- each Pod get a its own dedicated port range 0-65535
 </pre>
 ![pod](pod.png)
 
