@@ -71,7 +71,7 @@ Expected output
 ![image](https://github.com/user-attachments/assets/a733e6a1-37ce-4fe5-a7a5-32fcf4454ea4)
 
 
-## Demo - Download a docker image from Docker Remote Registry to Local Docker Registry
+## Lab - Download a docker image from Docker Remote Registry to Local Docker Registry
 ```
 docker images
 docker pull nginx:latest
@@ -81,7 +81,7 @@ docker images
 Expected output
 ![image](https://github.com/user-attachments/assets/4bac0c5b-5b43-4d8b-82c1-a59b2248a904)
 
-## Demo - Creating an nginx container
+## Lab - Creating an nginx container
 ```
 docker run -d --name nginx1 --hostname nginx1 nginx:latest
 docker ps
