@@ -305,6 +305,8 @@ Expected output
   - it comes Podman Container Engine and CRI-O Container Runtime pre-installed
 - Openshift worker nodes has opt for either Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Core Linux (RHCOS)
 - Bastion Virtual Machine (Helper Virtual Machine)
+  - Can be any Linux OS
+  - In our lab, I have installed Fedora 39 Linux
   - This is where we will install DNS Server
   - This is where we will install DHCP Server
   - This is where we will install HAProxy Load Balancer server
@@ -314,6 +316,7 @@ Expected output
     - Red Hat Openshift worker node ignition file
     - Red Hat Openshift bootstrap node ignition file
 - BootStrap Virtual Machine ( Temporary VM to setup Openshift master nodes )
+  - Red Hat Enterprise Core OS
   - In order to install openshift, the openshift installer creates a simple Kubernetes cluster within BootStrap Virtual Machine
   - The BootStrap Virtual Machine - Kubernetes cluster installs the required openshift master node components into master-1, master-2 and master-3 VMs
   - Once the Kubernetes cluster running in BootStrap VMs finds the master-1, master-2 and master-3 nodes in openshift are found to be stable, the Kubernetes cluster running in BootStrap VM is no more required
