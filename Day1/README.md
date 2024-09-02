@@ -230,6 +230,7 @@ Expected output
 - it is configuration object that is stored and maitained within etcd key-value database by API server
 - as per recommended industry best practice, one main application per Pod is better
 - Pod is the smallest unit that can be deployed within Kubernetes/Openshift
+- all the containers within a Pod, shares the IP address, ports, etc.,
 </pre>
 ![pod](pod.png)
 
