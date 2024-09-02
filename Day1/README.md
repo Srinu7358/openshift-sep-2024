@@ -253,3 +253,12 @@ Expected output
 - it supporrs rolling update
 - this configuration object is consumed by Deployment Controller
 </pre>
+
+## Lab - Checking the openshift tool version
+```
+oc version
+kubectl version
+oc get nodes
+oc get nodes -o wide
+```
+
