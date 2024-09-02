@@ -134,8 +134,17 @@ Expected output
 
 ## Container Orchestration Overview
 <pre>
-  
+- Container Orchestration platform tools helps us manage our containerized application workloads
+- instead of manually creating containers and managing them, we could use Container Orchestration Platforms to manage them for us
+- Examples
+  1. Docker SWARM - Docker's native Container Orchestration Platform
+  2. Google Kubernetes - Free & Production grade Container Orchestration Platform
+  3. Red Hat Openshift - Enterprise Paid software - Red Hat's Distribution of Kubernetes
 </pre>
+
+## Docker SWARM Overview
+<pre>
+</pre> 
 
 ## Red Hat Openshift Overview
 <pre>
