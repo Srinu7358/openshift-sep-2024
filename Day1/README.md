@@ -30,12 +30,21 @@
     - Microsoft Hyper-V
 </pre>
 
-## Docker Overview
+## Container Overview
 <pre>
 - is an application virtualization technology
-- 
+- each container represents one application
+- containers can't run a OS inside it, they can only run a single application
+- hence, containers are not a replacement for Hypervisor(Virtualization)
+- in practical world, Virtualization and Containerization are used in combination, hence they are complimenting technology and not a competing technology
+- is considered light-weight virtualization
+- containers running in the Host OS, shares the hardware resources on the underlying Host OS
+- containers don't get their own hardware resources
+- contianers does'nt have OS Kernel
+- containers depend on the Host OS Kernel for any OS functionality
 </pre>
 
+## Docker Overview
 
 ## High-Level Docker Architecture
 <pre>
