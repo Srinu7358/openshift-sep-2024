@@ -582,3 +582,31 @@ cat /etc/hosts
 Expected output
 ![image](https://github.com/user-attachments/assets/cf4a0bfa-1977-4b0b-a8d5-6f97e99bda39)
 ![image](https://github.com/user-attachments/assets/d25b050a-8d81-44f5-a66f-4c107a423fb7)
+
+## Lab - Ingress
+```
+cd ~/openshift-sep-2024
+git pull
+cd Day2/ingress
+oc get deploy
+oc create deploy hello --image=tektutor/spring-ms:1.0 --replicas=3
+oc expose deploy/hello --port=8080
+
+oc get svc
+
+cat ingress.yml
+
+oc apply -f ingress.yml
+
+oc get ingress
+oc describe ingress/tektutor
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/f23c77d8-77aa-459e-81ad-bcd32607d980)
+![image](https://github.com/user-attachments/assets/b0621fc9-624c-4f58-a23e-45a197685c72)
+![image](https://github.com/user-attachments/assets/88d7b35c-7e18-4dcc-8700-9da502ba060f)
+![image](https://github.com/user-attachments/assets/b22bc33f-4212-4ec6-9adf-4d40414606fd)
+![image](https://github.com/user-attachments/assets/25948be8-3871-4f4e-a779-41649ee7fa95)
+![image](https://github.com/user-attachments/assets/5259258c-5896-48e2-a353-27ad691630b3)
+![image](https://github.com/user-attachments/assets/2780b9b6-8d38-4f18-a82f-528c332584d8)
