@@ -409,7 +409,7 @@ oc get svc
 Expected output
 ![image](https://github.com/user-attachments/assets/a0646605-3ccc-477c-a124-e08ee4f2b3a3)
 
-You also find more details about a service as shown below
+You can find more details about a service as shown below
 ```
 oc describe svc/nginx
 ```
