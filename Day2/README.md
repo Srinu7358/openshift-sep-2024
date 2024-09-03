@@ -279,3 +279,14 @@ oc edit rs/nginx-6677c75969
 Expected output
 ![image](https://github.com/user-attachments/assets/5be83c26-e010-4645-9fd8-faf95f86ca2b)
 ![image](https://github.com/user-attachments/assets/7a426c4e-ec37-4ad2-a238-d44e7009c67d)
+
+## Lab - Editing a pod definition
+```
+oc get po
+oc edit pod/nginx-aabbccdd-3453asf
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/c29d24ab-fe86-42d2-a6b0-a95275c4b80d)
+![image](https://github.com/user-attachments/assets/4845d068-6424-4101-bd10-22797ee07857)
+![image](https://github.com/user-attachments/assets/a000dc47-f0bd-46d4-a14e-0d58ead5b00e)
