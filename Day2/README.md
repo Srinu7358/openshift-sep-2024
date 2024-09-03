@@ -255,3 +255,17 @@ oc get po -o wide
 
 Expected output
 ![image](https://github.com/user-attachments/assets/c16bd189-6555-4078-b9f8-ff4a978227e0)
+
+## Lab - Edit a deployment specification
+Once you edit, you could update the replicas to 5, save and exit the file.
+```
+oc get deploy
+oc edit deploy/nginx
+oc get po -w
+oc get po
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/95a3e4dd-7dca-4fb9-96b2-0886477a8536)
+![image](https://github.com/user-attachments/assets/32d7e1f4-54f9-49cf-8a18-bb3f79189910)
+![image](https://github.com/user-attachments/assets/61488cf1-569f-4549-a878-ae515caf6c6a)
