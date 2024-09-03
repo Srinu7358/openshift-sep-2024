@@ -66,6 +66,7 @@ Expected output
 ![image](https://github.com/user-attachments/assets/4fedb351-0daf-402e-9524-9e1a10c10963)
 
 ## Lab - Creating a project for your application deployments
+In the below command, replace 'jegan' with your name
 ```
 oc new-project jegan
 oc get projects | grep jegan
