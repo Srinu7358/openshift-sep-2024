@@ -252,7 +252,7 @@ Expected output
   - name of the application deployment
   - number of Pod instances expected to be running
   - container image and version that must be used to create Pod
-- it supporrs rolling update
+- it supports rolling update
 - this configuration object is consumed by Deployment Controller
 </pre>
 
