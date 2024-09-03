@@ -1,6 +1,6 @@
 # Day 2
 
-## Lab - List all the openshift nodes
+## Lab - List all the openshift nodes ( as non-admin user )
 ```
 oc get nodes
 oc get nodes -o wide
