@@ -393,6 +393,9 @@ In order to quit the port-forward, go back the first tab and press Ctrl+C
 - Route is implemented based on Kubernetes Ingress
 - Route generally forward the call to a single Kubernetes/Openshift Service ( ClusterIP, NodePort or LoadBalancer service )
 - Route provides a convenient public url to access the application externally
+- gives the benefit of loadbalancer service without attracting any extra charges
+- in general, openshift users don't use nodeport service at all instead they use Route
+- Route is also a free alternate to LoadBalancer service
 </pre>
 
 
