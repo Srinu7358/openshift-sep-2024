@@ -292,11 +292,49 @@ Expected output
 
 
 ## Info - Kubernetes/Openshift Control Plane Components
-```
-```
+The control plane components only runs in master node
+<pre>
+1. API Server
+2. etcd database
+3. Controller Managers
+4. Scheduler
+</pre>
+
+#### API Server
+<pre>
+- API Server is the heart of Kubernetes/Openshift
+- for every Openshift features there is a set of APIs supported by API Server
+- all the control plane components interacts only with API Server by making a REST call
+- API Server stores/updates/retrieves the cluster status, application status into etcd database
+- each change that is done in the etcd database will result in API Server raising events
+</pre>
+
+#### Etcd database
+<pre>
+- key/value database
+- it is an independent opensource database used in Kubernetes & Openshift
+- generally etcd database works as a cluster i.e group of etcd instances works together as a cluster
+- when one of the etcd db instance is updates, the data is synchronized automatically on other etcd instances within the etcd cluster
+- minimum number of instances required to create an etcd cluster is 3
+</pre>
+
+#### Controller Managers
+<pre>
+- To manage each type of resource in Kubernetes/Openshift there is a dedicated Controller
+- Controllers are deployed as Pods
+- Each Controller watches the cluster
+  - when new resources are created
+  - when existing resources in etcd are edited/updated
+  - when existing resource are deleted from etcd
+- Based on the events from API server the Controller job to reconcile based on updated configuration objects
+</pre>  
+
+#### Scheduler
+<pre>
+- When new Pods are created, the Scheduler identifies a healthy node and sends the scheduling recommendations to API server via REST call  
+</pre>  
 
 ## Info - Understanding Red Hat Openshift installation
-
 <pre>
 - Assume we wish to have 3 master nodes with 3 worker nodes
 - each of these nodes can be a Virtual Machine in on-prem server or it could be a physical in your office or it could be an ec2 in aws or it could be an azure vm in azure cloud
@@ -381,7 +419,6 @@ oc - is the command-line openshift client
 kubectl - is the kubernetes command-line client
 both oc and kubectl are supported in openshift cluster
 </pre>
-
 
 ## Day1 - Feedback ( Kindly complete this before your leave for today )
 <pre>
