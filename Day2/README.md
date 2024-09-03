@@ -156,4 +156,6 @@ Expected output
 - Openshift will not allow regular applications to run administrative tasks
 - in the above logs, note that nginx.conf at line number 2, it seems to create a folder outside the home directory, which can be done only by an administrator
 - as the application is running as non-admin user, due to permission issues the Pod is crashing
+- the root cause is, the nginx:latest docker image doesn't seem to be following openshift standards, hence this kind of docker images must be avoided in openshift
+- instead we could use bitnami/nginx:latest docker image that meets all the openshift best practices
 </pre>
