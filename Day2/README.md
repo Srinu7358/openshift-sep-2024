@@ -185,5 +185,7 @@ Expected output
 
 #### Things to note
 <pre>
--   
+- bitnami images generally follows openshift or general industry best practices, hence almost all bitnami containers images are openshift compatible
+- bitnami images also ensure that ports below 1024 aren't used as they are reserved by openshift for its internal use
+- bitnami images are rootless, i.e they perform everything as non-admin users
 </pre>
