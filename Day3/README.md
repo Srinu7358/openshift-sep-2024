@@ -1,6 +1,6 @@
 # Day 3
 
-## Reference Articles
+## You may like these articles - go thru when you find time
 <pre>
 https://mvallim.github.io/kubernetes-under-the-hood/documentation/kube-flannel.html
 
