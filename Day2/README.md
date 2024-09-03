@@ -150,3 +150,10 @@ oc logs pod/nginx-56fcf95486-mpb4m
 
 Expected output
 ![image](https://github.com/user-attachments/assets/4e186163-671e-4e91-b9ad-f3be4ff9e2fe)
+
+#### Things to note
+<pre>
+- Openshift will not allow regular applications to run administrative tasks
+- in the above logs, note that nginx.conf at line number 2, it seems to create a folder outside the home directory, which can be done only by an administrator
+- as the application is running as non-admin user, due to permission issues the Pod is crashing
+</pre>
