@@ -486,3 +486,25 @@ You may refer my medium blog for step by step instructions here
 <pre>
 https://medium.com/tektutor/using-metallb-loadbalancer-with-bare-metal-openshift-onprem-4230944bfa35  
 </pre>
+
+## Lab - Creating an external LoadBalancer service for nginx deployment
+Let's delete the existing nodeport service
+```
+oc get svc
+oc delete svc/nginx
+```
+
+Let's create the loadbalancer external service
+```
+oc expose deploy/nginx --type=LoadBalancer --port=8080
+oc get svc
+oc describe svc/nginx
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/840d9456-6fa7-4115-bbf1-b6b4a2b0fb44)
+
+LoadBalancer service is supposed to acquire an external IP automatically. Since, we are using a local openshift setup, it won't happen automatically. We need to install Metallb operator and configure to get it to working.
+![image](https://github.com/user-attachments/assets/5dc6b1a4-ed6a-4c42-822b-bdb5ea30bb0f)
+
+
