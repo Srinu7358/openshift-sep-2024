@@ -269,3 +269,13 @@ Expected output
 ![image](https://github.com/user-attachments/assets/95a3e4dd-7dca-4fb9-96b2-0886477a8536)
 ![image](https://github.com/user-attachments/assets/32d7e1f4-54f9-49cf-8a18-bb3f79189910)
 ![image](https://github.com/user-attachments/assets/61488cf1-569f-4549-a878-ae515caf6c6a)
+
+## Lab - Edit a replicaset definition
+```
+oc get rs
+oc edit rs/nginx-6677c75969
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/5be83c26-e010-4645-9fd8-faf95f86ca2b)
+![image](https://github.com/user-attachments/assets/7a426c4e-ec37-4ad2-a238-d44e7009c67d)
