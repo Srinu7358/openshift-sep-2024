@@ -417,3 +417,35 @@ oc describe svc/nginx
 Expected output
 ![image](https://github.com/user-attachments/assets/16339383-6ab3-4b7e-a46b-c077fb191285)
 
+To access the nginx clusterip internal service, let's create a test-pod use service discovery( accessing service by its name )
+```
+oc run test-pod --image=tektutor/spring-ms:1.0
+oc get po
+oc exec -it pod/test-pod sh
+curl http://nginx:8080
+curl http://<service-name>:<service-port>
+exit
+```
+
+In the above command
+<pre>
+nginx - is the name of the nginx clusterip service
+8080 - is the service port
+</pre>
+
+Expected output
+![image](https://github.com/user-attachments/assets/f2608ce4-c4b0-40c2-8527-d2daf8107f52)
+![image](https://github.com/user-attachments/assets/d8d43e97-0a57-42c2-8839-6861729b6e62)
+
+You could also access the clusterip internal service as shown below
+```
+oc exec -it pod/test-pod sh
+curl http://172.30.40.10:8080
+curl http://<service-ip>:<service-port>
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/a87593d4-7ecf-405d-a9dd-10779d05c146)
+![image](https://github.com/user-attachments/assets/91ed17d6-33ac-4e73-89d3-d977272a1ecf)
+![image](https://github.com/user-attachments/assets/b1310035-a2b0-43f9-9581-ee69cbec68cb)
+![image](https://github.com/user-attachments/assets/eefe9d14-4532-47fc-825f-8a79fa2102a1)
