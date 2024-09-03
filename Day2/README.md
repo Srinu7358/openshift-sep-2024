@@ -247,3 +247,11 @@ exit
 
 Expected output
 ![image](https://github.com/user-attachments/assets/c32a4795-180a-4c6c-8829-d03dd1289a53)
+
+## Lab - Finding a pod IP address
+```
+oc get po -o wide
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/c16bd189-6555-4078-b9f8-ff4a978227e0)
