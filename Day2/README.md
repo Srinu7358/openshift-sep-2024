@@ -1,4 +1,4 @@
-# Day 2
+![image](https://github.com/user-attachments/assets/d9de9a1a-8bdc-468a-b23e-553e87bdf3d1)# Day 2
 
 ## Info - Openshift Control Plane Components ( Runs only in master nodes )
 <pre>
@@ -95,3 +95,14 @@ oc whoami --show-console
 
 Expected output
 ![image](https://github.com/user-attachments/assets/3280ffc6-b5dc-414d-88c7-d8a30f14f854)
+
+## Lab - Find more details about a node
+```
+oc describe node/master01.ocp4.rps.com
+oc describe node/master02.ocp4.rps.com
+oc describe node/master03.ocp4.rps.com
+oc describe node/worker01.ocp4.rps.com
+oc describe node/worker02.ocp4.rps.com
+```
+Expected output
+![image](https://github.com/user-attachments/assets/0562df6c-6505-44a0-b5e0-fe012bae589b)
