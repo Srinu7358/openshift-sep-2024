@@ -331,3 +331,43 @@ In order to quit the port-forward, go back the first tab and press Ctrl+C
      - NodePort service
      - LoadBalancer service
 </pre>
+
+## Info - ClusterIP Service Overview
+<pre>
+- is an internal service
+- accessible only within the Pod shell, i.e inside openshift cluster only
+- practical use-cases for ClusterIP service is to expose database for front-end application/microservice running with openshift
+</pre>
+
+## Info - NodePort Service Overview
+<pre>
+- is an external service
+- accessible outside openshift cluster
+- Kubernetes/Openshift has reserved ports in the range 30000-32767 for the purpose of node port services
+- For each NodePort service we create for a deployment, a port in the range 30000-32767 will be allocated for the nodeport service
+- the nodeport is opened by openshift in all the nodes present in the openshift cluster (master1,master2,master, worker1 and worker2)
+- advantages of using NodePort service
+  - it is an internal implementation of Kubernetes/Openshift, hence even if you run your cluster in AWS/Azure it won't attract any extra charges when we create a NodePort service
+- drawbacks
+  - it is not user-friendly to access a node-port, it is not convenient
+  - we will end up opening many ports in firewall for each node port service we create, this might attract security issues
+</pre>
+
+## Info - LoadBalancer Service Overview
+<pre>
+- is an external service
+- generally used in public cloud environments like AWS, Azure, GCP, Digital Ocean, etc.,
+- can also be used in On-Prem Kubernetes/Openshift setup like our lab setup
+- in order to support load-balancer service in a local openshift setup, we need to install Metallb Operator and configure it
+- advantages
+  - it is convenient to access as they tend to us user-friendly ports like 8080, etc.,
+  - user-friendly
+  - it is free, when it is used in a local Kubernetes/openshift setup with Metallb operator
+- drawbacks
+  - it will attract extra charges when used in EKS ( AWS Elastic Kubernetes Service - Managed Kubernetes cluster in AWS )
+  - it will attract extra charges when used in AKS ( Azure Kubernetes Service - Managed Kubernetes cluster in Azure )
+  - it will attract extra charges when used in ROSA ( AWS Red Hat Openshift - Managed Openshift cluster in AWS )
+  - it will attract extra charges when used in ARO ( Azure Red Hat Openshift - Managed Openshift cluster from Azure )
+</pre>
+
+
