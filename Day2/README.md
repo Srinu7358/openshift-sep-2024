@@ -572,7 +572,8 @@ oc describe route/nginx
 curl http://nginx-jegan.apps.ocp4.rps.com
 ```
 
-We need to add the route url as shown below in the /etc/hosts
+We need to add the route url as shown below in the /etc/hosts. The bastion vm ip is 192.168.100.254, in that vm dns server is running, which will resolve the dns urls to respective IP address.
+
 ```
 cat /etc/hosts
 ```
