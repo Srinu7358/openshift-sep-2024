@@ -203,3 +203,34 @@ oc get po
 
 Expected output
 ![image](https://github.com/user-attachments/assets/626fc2d7-9109-4656-b1db-194c2f885ac3)
+
+## Lab - Finding more details about a deployment
+```
+oc get deploy
+oc describe deploy/nginx
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/022cc5db-2ba5-4e68-a7dd-a814393dbc91)
+![image](https://github.com/user-attachments/assets/07556ac4-0e9e-4a2c-b962-43cc7986171d)
+
+## Lab - Finding more details about a replicaset
+```
+oc get rs
+oc describe rs/nginx-
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/4124ad1e-fc36-4257-9897-a86c5840d73e)
+
+## Lab - Finding more details about a pod
+```
+oc get po
+oc describe pod/
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/92a76736-a100-4999-9ad2-5bb80e55c0bc)
+![image](https://github.com/user-attachments/assets/fc73870e-fe2b-4569-bef5-d936113a01d6)
+![image](https://github.com/user-attachments/assets/1fe2b791-efb5-4903-a785-f53d261b2d5c)
+
