@@ -507,4 +507,18 @@ Expected output
 LoadBalancer service is supposed to acquire an external IP automatically. Since, we are using a local openshift setup, it won't happen automatically. We need to install Metallb operator and configure to get it to working.
 ![image](https://github.com/user-attachments/assets/5dc6b1a4-ed6a-4c42-822b-bdb5ea30bb0f)
 
+Let's configure the address pool, i.e reserve some range IP addresses for openshift to assign to the load balancer created each time we create a load balancer service.
 
+Clone the TekTutor openshift Training repository
+```
+cd ~
+git clone https://github.com/tektutor/openshift-sep-2024.git
+cd openshift-sep-2024
+git pull
+cd Day2/metallb
+cat addresspool.yml
+cat metallb.yml
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/c9d34721-43e0-4df1-9fc3-ddab6f4a821c)
