@@ -449,3 +449,29 @@ Expected output
 ![image](https://github.com/user-attachments/assets/91ed17d6-33ac-4e73-89d3-d977272a1ecf)
 ![image](https://github.com/user-attachments/assets/b1310035-a2b0-43f9-9581-ee69cbec68cb)
 ![image](https://github.com/user-attachments/assets/eefe9d14-4532-47fc-825f-8a79fa2102a1)
+
+## Lab - Creating an external nodeport service for nginx deployment
+We need to delete the existing clusterip internal service
+```
+oc get svc
+oc delete svc/nginx
+```
+
+Let's create an extenal nodeport service for nginx deployment
+```
+oc expose deploy/nginx --type=NodePort --port=8080
+oc get svc
+oc describe svc/nginx
+curl http://192.168.100.11:32732
+curl http://192.168.100.12:32732
+curl http://192.168.100.13:32732
+curl http://192.168.100.21:32732
+curl http://192.168.100.22:32732
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/1ad870b8-0737-4bd2-b3b2-1835ce9f6b01)
+![image](https://github.com/user-attachments/assets/8a92da85-bb53-49e9-a4d2-67156391ca4c)
+![image](https://github.com/user-attachments/assets/4da88f0a-bed9-46a1-9877-33890ae81d0b)
+![image](https://github.com/user-attachments/assets/ce56caa1-ed0a-4f23-9850-1bb008494a8d)
+![image](https://github.com/user-attachments/assets/2ac83374-27c4-4805-82b6-acbb6d4a1527)
