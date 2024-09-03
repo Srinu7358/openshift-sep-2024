@@ -319,3 +319,15 @@ In order to quit the port-forward, go back the first tab and press Ctrl+C
 - you can use any port which is not already used by some participant on that server, instead of 9005 you may try any other port 
 </pre>
 
+## Info - Openshift/Kubernetes service
+<pre>
+- service represents a group of load-balanced pods from a single deployment
+- service can be given an unique name, it acquires an unique ip address which are stable
+- anyone who wants to access the application Pods, they can access them via service name or its IP address
+- services are of 2 types
+  1. Internal service ( accessible within openshift cluster - i.e pods )
+     - ClusterIP service
+  2. External service ( accessible outside openshift cluster )
+     - NodePort service
+     - LoadBalancer service
+</pre>
