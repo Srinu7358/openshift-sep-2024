@@ -290,3 +290,26 @@ Expected output
 ![image](https://github.com/user-attachments/assets/c29d24ab-fe86-42d2-a6b0-a95275c4b80d)
 ![image](https://github.com/user-attachments/assets/4845d068-6424-4101-bd10-22797ee07857)
 ![image](https://github.com/user-attachments/assets/a000dc47-f0bd-46d4-a14e-0d58ead5b00e)
+
+## Lab - Testing a Pod using port forwarding ( Not used in production )
+Run the below command in one terminal tab
+```
+oc port-forward pod/nginx-aabcadsf-r4acs34 9001:8080
+```
+From another terminal tab, you can access the web page served the above pod as shown below
+```
+curl http://localhost:9001
+```
+
+In order to quit the port-forward, go back the first tab and press Ctrl+C
+
+#### Things to note
+<pre>
+- port-forward is used primarily for testing purpose
+- this is never used in production
+- this is just a quick way to test if the application running within a Pod container is working fine
+- hence must be avoid otherwise
+- the port on the left side is opened up on your local machine
+- the port on the right side 8080 is used by bitnami/nginx container within the Pod
+</pre>
+
