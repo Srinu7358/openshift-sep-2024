@@ -159,3 +159,15 @@ Expected output
 - the root cause is, the nginx:latest docker image doesn't seem to be following openshift standards, hence this kind of docker images must be avoided in openshift
 - instead we could use bitnami/nginx:latest docker image that meets all the openshift best practices
 </pre>
+
+
+## Lab - Deleting a deployment under your project
+```
+oc project
+oc get deploy
+oc delete deploy/nginx
+oc get deploy,rs,po
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/d074baaa-4b6e-4c16-9fd1-bd229848cb1a)
