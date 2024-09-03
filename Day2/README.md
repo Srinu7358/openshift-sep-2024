@@ -398,4 +398,22 @@ In order to quit the port-forward, go back the first tab and press Ctrl+C
 - Route is also a free alternate to LoadBalancer service
 </pre>
 
+## Lab - Creating a internal clusterip service in imperative style
+```
+oc get deploy
+oc expose deploy/nginx --type=ClusterIP --port=8080
+oc get services
+oc get service
+oc get svc
+```
+Expected output
+![image](https://github.com/user-attachments/assets/a0646605-3ccc-477c-a124-e08ee4f2b3a3)
+
+You also find more details about a service as shown below
+```
+oc describe svc/nginx
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/16339383-6ab3-4b7e-a46b-c077fb191285)
 
