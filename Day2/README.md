@@ -53,6 +53,15 @@ Expected output
 ![image](https://github.com/user-attachments/assets/8d96f10e-e6b0-40e5-a050-ee990f015c91)
 
 ## Lab - Listing all namespaces in openshift
+<pre>
+- namespace/project is a way to segregate application deployments done by one user/team from other users/teams
+- administrators can control which users has access to specific projects
+</pre>
 ```
 oc get namespaces
+oc get projects
 ```
+Expected output
+![image](https://github.com/user-attachments/assets/5b65abc5-ba0d-4f45-b808-624c5fa28fe1)
+![image](https://github.com/user-attachments/assets/4fedb351-0daf-402e-9524-9e1a10c10963)
+
