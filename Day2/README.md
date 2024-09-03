@@ -4,7 +4,10 @@
 ```
 oc get nodes
 oc get nodes -o wide
+oc version
+kubectl version
 ```
 
 Expected output
 ![image](https://github.com/user-attachments/assets/d51dde4c-3386-4ac1-8884-6918b450023b)
+![image](https://github.com/user-attachments/assets/44abd122-e018-4cba-81cb-961082a8885c)
