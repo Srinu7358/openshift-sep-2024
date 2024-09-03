@@ -74,3 +74,14 @@ oc get projects | grep jegan
 
 Expected output
 ![image](https://github.com/user-attachments/assets/ae696f69-5650-4464-bf08-09ea3e16b8a2)
+
+## Lab - Switching between projects
+```
+oc project
+oc project default
+oc project
+oc project jegan
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/60130e0c-79b5-49d2-a9aa-93f7d77a653a)
