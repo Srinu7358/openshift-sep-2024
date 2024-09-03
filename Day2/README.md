@@ -141,3 +141,12 @@ oc get po
 ```
 Expected output
 ![image](https://github.com/user-attachments/assets/1c50ef46-d4bf-4518-9097-93219a0659ff)
+
+## Lab - Troubleshooting - checking pod logs
+```
+oc get po
+oc logs pod/nginx-56fcf95486-mpb4m
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/4e186163-671e-4e91-b9ad-f3be4ff9e2fe)
