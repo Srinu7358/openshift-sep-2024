@@ -560,3 +560,24 @@ Expected output
 ![image](https://github.com/user-attachments/assets/2d432b22-8e39-494e-889d-75c663173094)
 ![image](https://github.com/user-attachments/assets/b8b35c90-b000-404f-a88f-6726d9ad0c81)
 ![image](https://github.com/user-attachments/assets/2f8ceef2-cb79-4c0a-9f73-f4bfe25bc83d)
+
+## Lab - Create a route to expose an application for external access
+```
+oc delete svc/nginx
+oc expose deploy/nginx --port=8080
+oc get svc
+oc expose svc/nginx
+oc describe route/nginx
+
+curl http://nginx-jegan.apps.ocp4.rps.com
+```
+
+We need to add the route url as shown below in the /etc/hosts
+```
+cat /etc/hosts
+```
+![image](https://github.com/user-attachments/assets/93ed8fda-ae2f-4bf8-b174-6a450d55f1c7)
+
+Expected output
+![image](https://github.com/user-attachments/assets/cf4a0bfa-1977-4b0b-a8d5-6f97e99bda39)
+![image](https://github.com/user-attachments/assets/d25b050a-8d81-44f5-a66f-4c107a423fb7)
