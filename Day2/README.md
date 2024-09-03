@@ -65,3 +65,11 @@ Expected output
 ![image](https://github.com/user-attachments/assets/5b65abc5-ba0d-4f45-b808-624c5fa28fe1)
 ![image](https://github.com/user-attachments/assets/4fedb351-0daf-402e-9524-9e1a10c10963)
 
+## Lab - Creating a project for your application deployments
+```
+oc new-project jegan
+oc get projects | grep jegan
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/ae696f69-5650-4464-bf08-09ea3e16b8a2)
