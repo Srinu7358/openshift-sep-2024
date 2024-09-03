@@ -479,3 +479,10 @@ Expected output
 ![image](https://github.com/user-attachments/assets/8733ab20-258b-498f-bf0c-cd143d86f5b8)
 ![image](https://github.com/user-attachments/assets/036f216f-90be-473c-b7ef-50483d2f5060)
 ![image](https://github.com/user-attachments/assets/f998e534-5386-41d4-a140-f39c5cc00b63)
+
+## Demo - Installing Metallb operator
+
+You may refer my medium blog for step by step instructions here
+<pre>
+https://medium.com/tektutor/using-metallb-loadbalancer-with-bare-metal-openshift-onprem-4230944bfa35  
+</pre>
