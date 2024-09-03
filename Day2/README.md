@@ -521,4 +521,92 @@ cat metallb.yml
 ```
 
 Expected output
-![image](https://github.com/user-attachments/assets/c9d34721-43e0-4df1-9fc3-ddab6f4a821c)
+![image](https://github.com/user-attachments/assets/ada53054-b5e0-4f46-a465-c135072e0aab)
+
+Let's reserve the address pool range for Metallb operator's use
+```
+cd ~/openshift-sep-2024
+git pull
+cd Day2/metallb
+oc apply -f addresspool.yml
+oc apply -f metallb.yml
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/9832fc5b-cea5-40db-9e4a-f57d8a019acb)
+
+Let's check if the loadbalancer service has acquired an external IP address from the reserved address pool we configured
+```
+oc get svc
+curl http://192.168.100.90
+```
+
+## Lab - Labels are used as a selector 
+```
+oc get deploy --show-lables
+oc get deploy -l app=nginx
+
+oc describe deploy/nginx
+oc get rs --show-lables
+oc get rs -l app=nginx
+
+oc get po --show-lables
+oc get po -l app=nginx
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/bf8a09bb-a855-454a-85f5-0310796ec78c)
+![image](https://github.com/user-attachments/assets/5fa39f5f-7422-4d60-857e-b2954053ad85)
+![image](https://github.com/user-attachments/assets/2d432b22-8e39-494e-889d-75c663173094)
+![image](https://github.com/user-attachments/assets/b8b35c90-b000-404f-a88f-6726d9ad0c81)
+![image](https://github.com/user-attachments/assets/2f8ceef2-cb79-4c0a-9f73-f4bfe25bc83d)
+
+## Lab - Create a route to expose an application for external access
+```
+oc delete svc/nginx
+oc expose deploy/nginx --port=8080
+oc get svc
+oc expose svc/nginx
+oc describe route/nginx
+
+curl http://nginx-jegan.apps.ocp4.rps.com
+```
+
+We need to add the route url as shown below in the /etc/hosts. The bastion vm ip is 192.168.100.254, in that vm dns server is running, which will resolve the dns urls to respective IP address.
+
+```
+cat /etc/hosts
+```
+![image](https://github.com/user-attachments/assets/93ed8fda-ae2f-4bf8-b174-6a450d55f1c7)
+
+Expected output
+![image](https://github.com/user-attachments/assets/cf4a0bfa-1977-4b0b-a8d5-6f97e99bda39)
+![image](https://github.com/user-attachments/assets/d25b050a-8d81-44f5-a66f-4c107a423fb7)
+
+## Lab - Ingress
+```
+cd ~/openshift-sep-2024
+git pull
+cd Day2/ingress
+oc get deploy
+oc create deploy hello --image=tektutor/spring-ms:1.0 --replicas=3
+oc expose deploy/hello --port=8080
+
+oc get svc
+
+cat ingress.yml
+
+oc apply -f ingress.yml
+
+oc get ingress
+oc describe ingress/tektutor
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/f23c77d8-77aa-459e-81ad-bcd32607d980)
+![image](https://github.com/user-attachments/assets/b0621fc9-624c-4f58-a23e-45a197685c72)
+![image](https://github.com/user-attachments/assets/88d7b35c-7e18-4dcc-8700-9da502ba060f)
+![image](https://github.com/user-attachments/assets/b22bc33f-4212-4ec6-9adf-4d40414606fd)
+![image](https://github.com/user-attachments/assets/25948be8-3871-4f4e-a779-41649ee7fa95)
+![image](https://github.com/user-attachments/assets/5259258c-5896-48e2-a353-27ad691630b3)
+![image](https://github.com/user-attachments/assets/2780b9b6-8d38-4f18-a82f-528c332584d8)
