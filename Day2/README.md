@@ -51,3 +51,8 @@ oc get pods -n openshift-kube-scheduler
 
 Expected output
 ![image](https://github.com/user-attachments/assets/8d96f10e-e6b0-40e5-a050-ee990f015c91)
+
+## Lab - Listing all namespaces in openshift
+```
+oc get namespaces
+```
