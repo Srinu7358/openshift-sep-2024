@@ -1,5 +1,13 @@
 # Day 2
 
+## Info - Openshift Control Plane Components ( Runs only in master nodes )
+<pre>
+- API Server Pod
+- etcd database Pod
+- controller managers Pod
+- scheduler Pod
+</pre>
+
 ## Lab - List all the openshift nodes ( as non-admin user )
 ```
 oc get nodes
