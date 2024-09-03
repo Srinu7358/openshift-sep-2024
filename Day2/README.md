@@ -234,3 +234,16 @@ Expected output
 ![image](https://github.com/user-attachments/assets/fc73870e-fe2b-4569-bef5-d936113a01d6)
 ![image](https://github.com/user-attachments/assets/1fe2b791-efb5-4903-a785-f53d261b2d5c)
 
+## Lab - Getting inside a Pod shell
+```
+oc get po
+oc rsh deploy/nginx
+hostname
+hostname -i
+exit
+oc exec -it pod/nginx-aabbccdd-1awefa
+exit
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/c32a4795-180a-4c6c-8829-d03dd1289a53)
