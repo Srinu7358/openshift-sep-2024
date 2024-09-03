@@ -13,5 +13,5 @@ spec:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete 
   nfs:
-    server: 192.168.1.108 #Replace this with 10.10.15.5 or 10.10.15.9 or 10.10.15.34 as your per login
-    path: /var/nfs/jegan/wordpress #Replace this path with your nfs path /var/nfs/user[xy]/wordpress
+    server: 10.10.15.35 #Replace this with 10.10.15.27 or 10.10.15.34 as per your server IP 
+    path: /var/nfs/jegan/share2 #Replace this path with your nfs path /var/nfs/user[xy]/share2
