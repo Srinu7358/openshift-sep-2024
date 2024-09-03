@@ -370,4 +370,26 @@ In order to quit the port-forward, go back the first tab and press Ctrl+C
   - it will attract extra charges when used in ARO ( Azure Red Hat Openshift - Managed Openshift cluster from Azure )
 </pre>
 
+## Info - Ingress
+<pre>
+- Ingress is a forwarding rule
+- it is not a service
+- it is a feature implemented by Kubernetes, also supported in Openshift
+- For Ingress to work, we need the below in Openshift/Kubernetes Cluster
+  - Load Balancer ( e.g: Nginx LB or HA Proxy, etc )
+  - Ingress Controller ( e.g Nginx Ingress Controller or HAProxy Ingress Controller )
+  - Ingress ( Forwarding rule - user defined )
+- Ingress can forward the calls to multiple different services based on rules we define
+- Ingress provides a convenient public url to access the application externally
+</pre>  
+
+## Info - Routes
+<pre>
+- Route is a feature introducted in Red Hat Openshift
+- not supported in Kubernetes
+- Route is implemented based on Kubernetes Ingress
+- Route generally forward the call to a single Kubernetes/Openshift Service ( ClusterIP, NodePort or LoadBalancer service )
+- Route provides a convenient public url to access the application externally
+</pre>
+
 
