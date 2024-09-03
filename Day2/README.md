@@ -190,7 +190,7 @@ Expected output
 - bitnami images are rootless, i.e they perform everything as non-admin users
 </pre>
 
-## Lab - Scaling down the pod instance count(replicas) in a deployment
+## Lab - Scaling up or down the pod instances count(replicas) in a deployment
 
 To come out of the watch mode,you need to press Ctrl + C
 ```
