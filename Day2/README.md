@@ -189,3 +189,17 @@ Expected output
 - bitnami images also ensure that ports below 1024 aren't used as they are reserved by openshift for its internal use
 - bitnami images are rootless, i.e they perform everything as non-admin users
 </pre>
+
+## Lab - Scaling down the pod instance count(replicas) in a deployment
+
+To come out of the watch mode,you need to press Ctrl + C
+```
+oc get deploy,rs,po
+oc scale deploy/nginx --replicas=5
+oc get po -o wide -w
+oc scale deploy/nginx --replicas=2
+oc get po 
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/626fc2d7-9109-4656-b1db-194c2f885ac3)
