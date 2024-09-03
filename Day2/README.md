@@ -361,6 +361,7 @@ In order to quit the port-forward, go back the first tab and press Ctrl+C
 - generally used in public cloud environments like AWS, Azure, GCP, Digital Ocean, etc.,
 - can also be used in On-Prem Kubernetes/Openshift setup like our lab setup
 - in order to support load-balancer service in a local openshift setup, we need to install Metallb Operator and configure it
+- this will create an external loadbalancer like ELB/ALB etc., in public cloud environments like AWS/Azure
 - advantages
   - it is convenient to access as they tend to us user-friendly ports like 8080, etc.,
   - user-friendly
