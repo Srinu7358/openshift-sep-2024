@@ -85,3 +85,13 @@ oc project jegan
 
 Expected output
 ![image](https://github.com/user-attachments/assets/60130e0c-79b5-49d2-a9aa-93f7d77a653a)
+
+## Lab - Finding you logged in as which user within openshift
+```
+oc whoami
+oc whoami --show-server
+oc whoami --show-console
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/3280ffc6-b5dc-414d-88c7-d8a30f14f854)
