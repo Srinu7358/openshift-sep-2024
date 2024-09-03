@@ -106,3 +106,38 @@ oc describe node/worker02.ocp4.rps.com
 ```
 Expected output
 ![image](https://github.com/user-attachments/assets/0562df6c-6505-44a0-b5e0-fe012bae589b)
+
+## Lab - Deploying your first application within your project namespace
+```
+oc project jegan
+oc create deployment nginx --image=nginx:latest --replicas=3
+```
+
+Listing the deployments
+```
+oc get deployments
+oc get deployment
+oc get deploy
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/8ebda529-ec89-4994-8bde-a8efe6dd8657)
+
+Listing the replicasets
+```
+oc get replicasets
+oc get replicaset
+oc get rs
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/b5ac4a3e-79ff-49b9-9320-f795b1f05564)
+
+Listing all the pods in your project namespace
+```
+oc get pods
+oc get pod
+oc get po
+```
+Expected output
+![image](https://github.com/user-attachments/assets/1c50ef46-d4bf-4518-9097-93219a0659ff)
