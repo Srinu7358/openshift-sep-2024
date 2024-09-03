@@ -521,4 +521,42 @@ cat metallb.yml
 ```
 
 Expected output
-![image](https://github.com/user-attachments/assets/c9d34721-43e0-4df1-9fc3-ddab6f4a821c)
+![image](https://github.com/user-attachments/assets/ada53054-b5e0-4f46-a465-c135072e0aab)
+
+Let's reserve the address pool range for Metallb operator's use
+```
+cd ~/openshift-sep-2024
+git pull
+cd Day2/metallb
+oc apply -f addresspool.yml
+oc apply -f metallb.yml
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/9832fc5b-cea5-40db-9e4a-f57d8a019acb)
+
+Let's check if the loadbalancer service has acquired an external IP address from the reserved address pool we configured
+```
+oc get svc
+curl http://192.168.100.90
+```
+
+## Lab - Labels are used as a selector 
+```
+oc get deploy --show-lables
+oc get deploy -l app=nginx
+
+oc describe deploy/nginx
+oc get rs --show-lables
+oc get rs -l app=nginx
+
+oc get po --show-lables
+oc get po -l app=nginx
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/bf8a09bb-a855-454a-85f5-0310796ec78c)
+![image](https://github.com/user-attachments/assets/5fa39f5f-7422-4d60-857e-b2954053ad85)
+![image](https://github.com/user-attachments/assets/2d432b22-8e39-494e-889d-75c663173094)
+![image](https://github.com/user-attachments/assets/b8b35c90-b000-404f-a88f-6726d9ad0c81)
+![image](https://github.com/user-attachments/assets/2f8ceef2-cb79-4c0a-9f73-f4bfe25bc83d)
