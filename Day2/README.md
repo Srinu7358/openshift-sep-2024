@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/d9de9a1a-8bdc-468a-b23e-553e87bdf3d1)# Day 2
+# Day 2
 
 ## Info - Openshift Control Plane Components ( Runs only in master nodes )
 <pre>
@@ -106,6 +106,7 @@ oc describe node/worker02.ocp4.rps.com
 ```
 Expected output
 ![image](https://github.com/user-attachments/assets/0562df6c-6505-44a0-b5e0-fe012bae589b)
+![image](https://github.com/user-attachments/assets/d9de9a1a-8bdc-468a-b23e-553e87bdf3d1)
 
 ## Lab - Deploying your first application within your project namespace
 ```
