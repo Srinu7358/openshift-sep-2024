@@ -182,3 +182,8 @@ oc get deploy,rs,po
 Expected output
 ![image](https://github.com/user-attachments/assets/c9a184de-e46b-4d34-9a7f-dcd806bb7b1c)
 ![image](https://github.com/user-attachments/assets/56e188e1-41de-4779-bb0f-cb19376d32c8)
+
+#### Things to note
+<pre>
+-   
+</pre>
