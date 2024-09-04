@@ -181,3 +181,19 @@ Expected output
 ![image](https://github.com/user-attachments/assets/e031195b-a943-451f-8763-837e3157cc48)
 ![image](https://github.com/user-attachments/assets/f1244cc4-706d-4759-86f3-92a5fe7f715d)
 
+## Lab - Creating a ClusterIP internal service in declarative style
+```
+oc delete -f nginx-rs.yml
+oc create -f nginx-deploy.yml
+oc get deploy
+oc expose deploy/nginx --type=ClusterIP --port=8080 -o json
+oc expose deploy/nginx --type=ClusterIP --port=8080 -o yaml
+oc expose deploy/nginx --type=ClusterIP --port=8080 -o yaml > nginx-clusterip-svc.yml
+oc create -f nginx-clusterip-svc.yml --save-config
+oc get svc
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/6da0bf0f-1294-4641-9c22-4f703f524561)
+![image](https://github.com/user-attachments/assets/81c4fa40-b4a4-42d1-979b-defad545b6fc)
+![image](https://github.com/user-attachments/assets/58a1c5e7-2afa-431d-b3df-000ba53890a7)
