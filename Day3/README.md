@@ -290,3 +290,30 @@ oc rollout status deploy/nginx
 oc get po -o yaml | grep image
 ```
 ![image](https://github.com/user-attachments/assets/c553dd70-171e-4228-a38d-ad36fc3e1d4f)
+
+## Lab - Deploying application from Red Hat Openshift webconsole
+Launch your openshift webconsole
+![image](https://github.com/user-attachments/assets/aa696e9a-24c7-41e2-a097-7d2c2b5eb298)
+
+Switch to Developer context(view)
+![image](https://github.com/user-attachments/assets/0bb54aa3-7e2e-4b12-b35e-e8fd2160d47d)
+
+Click on +Add
+![image](https://github.com/user-attachments/assets/73b892db-878d-47d5-bbb3-111a0f160214)
+
+Under "Get started resources",click "View all samples"
+![image](https://github.com/user-attachments/assets/a07f47cd-65ca-48ba-98e4-b86d108406bc)
+
+Click on "Basic .Net"
+![image](https://github.com/user-attachments/assets/0381a045-ba41-4b82-9c79-7be843969519)
+
+Accept all the default and click "Create" button
+![image](https://github.com/user-attachments/assets/c534b4f1-995a-46ba-8860-62641be82556)
+![image](https://github.com/user-attachments/assets/3ea3c1fa-8922-407f-938a-718472f1420d)
+![image](https://github.com/user-attachments/assets/bb8756af-4331-4a29-b52e-d4e65cf50e9e)
+
+## Troubleshooting - Internal Openshift Image Registry not registered issue
+<pre>
+https://www.ibm.com/support/pages/failed-pull-image-during-manage-activation-due-integrated-container-image-registry-not-configured  
+</pre>
+
