@@ -210,3 +210,16 @@ oc get svc
 
 Expected output
 ![image](https://github.com/user-attachments/assets/588127ad-c6c6-490b-badd-b51dc4ffae3f)
+
+## Lab - Creating a LoadBalancer external service in declarative style
+```
+oc delete -f nginx-nodeport-svc.yml
+oc get svc
+oc expose deploy/nginx --type=LoadBalancer --port=8080 -o yaml --dry-run=client -o nginx-lb-svc.yml
+cat nginx-lb-svc.yml
+oc apply -f nginx-lb-svc.yml
+oc get svc
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/24738862-adbf-4f2e-860d-20d7b9304ec2)
