@@ -222,6 +222,7 @@ Expected output
 
 ## High-Level Openshift Architecture
 ![Architecture](openshiftArchitecture.png)
+![OpenShift High Level Architecture](master-node.png)
 
 
 # Info - Pod Overview
