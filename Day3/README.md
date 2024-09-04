@@ -14,5 +14,9 @@ https://kubernetes.io/docs/tasks/administer-cluster/network-policy-provider/weav
 
 https://granulate.io/blog/kubernetes-architecture-beginner-guide/
 
+</pre>
 
+## References - Must read to understand Kubernetes/Openshift Network Model
+<pre>
+https://www.tkng.io/  
 </pre>
