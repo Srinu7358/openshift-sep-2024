@@ -37,7 +37,7 @@ Expected output
 
 ## Lab - List all controller manager pods from all master nodes
 ```
-oc get pods -n openshift-kube-controller -o wide
+oc get pods -n openshift-kube-controller-manager -o wide
 ```
 
 Expected output
