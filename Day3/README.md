@@ -96,3 +96,36 @@ Expected output
 ![image](https://github.com/user-attachments/assets/45c36b52-b585-4e25-b48e-dfb2a6db0380)
 ![image](https://github.com/user-attachments/assets/30f47be1-547f-4776-b81f-d6a8cc52415a)
 
+
+## Lab - Deploying nginx in declarative style
+
+First of all, let's delete the existing deployments, services and routes within our project
+```
+oc get deploy,svc,routes
+oc delete deploy/nginx deploy/hello svc/nginx svc/hello route/nginx route/hello
+oc get all
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/6b6011d3-b2ef-495b-9985-580c7044ef25)
+
+Let's generate the nginx deployment declarative script
+```
+oc create deployment nginx --image=bitnami/nginx:latest --replicas=3 -o yaml --dry-run=client
+oc create deployment nginx --image=bitnami/nginx:latest --replicas=3 -o yaml --dry-run=client > nginx-deploy.yml
+cat nginx-deploy.yml
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/8112278c-f6b5-404b-8701-09aed613006c)
+![image](https://github.com/user-attachments/assets/0d5962e3-32bd-4c8b-8e6c-e625234f4cd7)
+
+Let's create the nginx deployment in declarative style
+```
+oc create -f nginx-deploy.yml --save-config
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/f36dd645-13c5-417f-a65a-9e0972f6ea8d)
+
+
