@@ -18,5 +18,15 @@ https://granulate.io/blog/kubernetes-architecture-beginner-guide/
 
 ## References - Must read to understand Kubernetes/Openshift Network Model
 <pre>
-https://www.tkng.io/  
+https://www.tkng.io/
+
+https://www.caseyc.net/cni-talk-kubecon-18.pdf
+
+https://www.altoros.com/blog/kubernetes-networking-writing-your-own-simple-cni-plug-in-with-bash/
+
+https://logingood.github.io/kubernetes/cni/2016/05/14/netns-and-cni.html
+
+https://logingood.github.io/kubernetes/cni/2016/05/15/bagpipe-gobgp.html
+
+https://dougbtv.com/nfvpe/2017/06/22/cni-tutorial/
 </pre>
