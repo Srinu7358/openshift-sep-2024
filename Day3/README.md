@@ -128,4 +128,19 @@ oc create -f nginx-deploy.yml --save-config
 Expected output
 ![image](https://github.com/user-attachments/assets/f36dd645-13c5-417f-a65a-9e0972f6ea8d)
 
+## Lab - Scale up nginx deployment in declarative style
+Let's update the nginx-deploy.yml replicas from 3 to 5 and save it before applying the changes into openshift cluster
+```
+cd ~/openshift-sep-2024
+git pull
+cd Day3/declarative-manifest-scripts
+vim nginx-deploy.yml
+oc apply -f nginx-deploy.yml
+oc get po -w
+oc get po
+```
 
+Expected output
+![image](https://github.com/user-attachments/assets/75d8b1e3-4345-4f76-9335-ae7e221ef0e9)
+![image](https://github.com/user-attachments/assets/92bda2bd-cada-42d4-b7be-724aaa0952e0)
+![image](https://github.com/user-attachments/assets/73f152c6-3a5d-4654-85ae-8c1199a0052d)
