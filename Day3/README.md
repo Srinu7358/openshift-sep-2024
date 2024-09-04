@@ -223,3 +223,25 @@ oc get svc
 
 Expected output
 ![image](https://github.com/user-attachments/assets/24738862-adbf-4f2e-860d-20d7b9304ec2)
+
+## Lab - Creating a Pod in declarative style
+Create a pod.yml with below content
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: nginx
+    image: bitnami/nginx:latest
+    imagePullPolicy: IfNotPresent
+```
+
+You should be able to create pod in the declarative style
+```
+oc apply -f pod.yml
+oc get po
+```
+Expected output
+![image](https://github.com/user-attachments/assets/73f25948-c365-4ed2-8419-f0dfee701520)
