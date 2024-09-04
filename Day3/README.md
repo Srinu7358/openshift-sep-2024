@@ -84,3 +84,15 @@ Example:
 - ReplicaSet Controller registers with the APIServer ( informers ) for CRUD ( Create, Read, Update and Delete ) events of ReplicaSet
 - ReplicaSet Controller will act whenever it sees the Desired Pods doesn't match the current no of Pods
 </pre>
+
+## Lab - Getting inside an etcd pod and understand how etcd stores deployment, replicaset, pods, etc
+```
+oc get pods -n openshift-etcd
+oc exec -it 
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/0c020429-49a8-40de-9f20-497a004f5247)
+![image](https://github.com/user-attachments/assets/45c36b52-b585-4e25-b48e-dfb2a6db0380)
+![image](https://github.com/user-attachments/assets/30f47be1-547f-4776-b81f-d6a8cc52415a)
+
