@@ -245,3 +245,40 @@ oc get po
 ```
 Expected output
 ![image](https://github.com/user-attachments/assets/73f25948-c365-4ed2-8419-f0dfee701520)
+
+## Lab - Rolling update in declarative style
+
+Let's delete all the resources in our project namespace
+```
+oc get all
+oc delete -f nginx-deploy.yml
+oc delete -f nginx-lb-svc.yml
+oc delete -f pod.yml
+oc get all
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/79a50337-4f76-490c-9e76-8182d1478685)
+
+
+Let' deploy nginx in declarative style using bitnami/nginx:1.18 docker image
+```
+oc create -f nginx-deploy.yml --save-config
+oc get deploy,po
+```
+![image](https://github.com/user-attachments/assets/2d277ca1-6d2d-4e44-a070-4feff42d9065)
+![image](https://github.com/user-attachments/assets/d926d97e-b6b5-4020-bf08-285a579dc79a)
+
+Now, let's edit the nginx-deploy.yml and update the image from bitnami/nginx:1.18 to bitnami/nginx:1.19 and save it
+![image](https://github.com/user-attachments/assets/02ddff2e-e890-457a-8ae3-2973de07f181)
+
+Now let's apply the nginx-deploy.yml with updated bitnami/nginx:1.19
+```
+oc apply -f nginx-deploy
+oc get po -o yaml | grep image
+oc rollout status deploy/nginx
+oc get po -o yaml | grep image
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/7c61b73c-17e0-4615-810b-126061771ecf)
