@@ -197,3 +197,16 @@ Expected output
 ![image](https://github.com/user-attachments/assets/6da0bf0f-1294-4641-9c22-4f703f524561)
 ![image](https://github.com/user-attachments/assets/81c4fa40-b4a4-42d1-979b-defad545b6fc)
 ![image](https://github.com/user-attachments/assets/58a1c5e7-2afa-431d-b3df-000ba53890a7)
+
+## Lab - Creating a NodePort external service in declarative style
+```
+oc delete -f nginx-clusterip-svc.yml
+oc get svc
+oc expose deploy/nginx --type=NodePort --port=8080 -o yaml --dry-run=client -o nginx-nodeport-svc.yml
+cat nginx-nodeport-svc.yml
+oc apply -f nginx-nodeport-svc.yml
+oc get svc
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/588127ad-c6c6-490b-badd-b51dc4ffae3f)
