@@ -282,3 +282,11 @@ oc get po -o yaml | grep image
 
 Expected output
 ![image](https://github.com/user-attachments/assets/7c61b73c-17e0-4615-810b-126061771ecf)
+
+Rollback will revert the pods to use older image i.e from bitnami/nginx:1.19 to bitnami/nginx:1.18
+```
+oc rollout undo deploy/nginx
+oc rollout status deploy/nginx
+oc get po -o yaml | grep image
+```
+![image](https://github.com/user-attachments/assets/c553dd70-171e-4228-a38d-ad36fc3e1d4f)
