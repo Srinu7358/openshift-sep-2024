@@ -6,7 +6,7 @@ metadata:
     haproxy.router.openshift.io/rewrite-target: /
 spec:
   rules:
-  - host: tektutor.apps.ocp4.tektutor.org.labs
+  - host: tektutor.apps.ocp4.rps.com
     http:
       paths:
       - backend:
