@@ -311,6 +311,7 @@ Accept all the default and click "Create" button
 ![image](https://github.com/user-attachments/assets/c534b4f1-995a-46ba-8860-62641be82556)
 ![image](https://github.com/user-attachments/assets/3ea3c1fa-8922-407f-938a-718472f1420d)
 ![image](https://github.com/user-attachments/assets/bb8756af-4331-4a29-b52e-d4e65cf50e9e)
+![image](https://github.com/user-attachments/assets/3ff07073-fccb-4051-bd66-748996bb9832)
 
 ## Troubleshooting - Internal Openshift Image Registry not registered issue
 <pre>
