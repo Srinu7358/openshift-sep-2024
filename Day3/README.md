@@ -318,3 +318,11 @@ Accept all the default and click "Create" button
 https://www.ibm.com/support/pages/failed-pull-image-during-manage-activation-due-integrated-container-image-registry-not-configured  
 </pre>
 
+## Lab - Deploying a Custom Java springboot application using CLI
+```
+oc project
+oc new-app https://github.com/tektutor/spring-ms.git --strategy=docker
+oc expose svc/spring-ms
+oc get bc
+oc logs bc/spring-ms
+```
