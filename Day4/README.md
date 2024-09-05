@@ -299,4 +299,19 @@ chmod 700 get_helm.sh
 
 ## Lab - Creating a Helm chart for wordpress with mariadb and deploy it in our Openshift cluster
 ```
+helm version
+helm create wordpress
+tree wordpress
 ```
+
+Expected output
+![image](https://github.com/user-attachments/assets/bcdfafc3-c3f8-474c-8780-f30622d168a5)
+
+Create a helm package
+```
+tree wordpress
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/7212b3f9-9c69-4660-9995-358b0b79f86b)
+
