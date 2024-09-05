@@ -272,3 +272,11 @@ Expected output
 <pre>
 https://kubernetes.io/docs/tasks/run-application/run-replicated-stateful-application/  
 </pre>
+
+## Lab - Using ConfigMap and Secrets and avoid hard coding
+```
+cd ~/openshift-sep-2024
+git pull
+cd Day4/configs-and-secrets
+./deploy
+```
