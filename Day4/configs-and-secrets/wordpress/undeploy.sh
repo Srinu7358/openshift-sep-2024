@@ -14,6 +14,6 @@ oc delete -f mariadb-pvc.yml
 oc delete -f mariadb-pv.yml
 
 oc delete -f wordpress-cm.yml
-oc delete -f wordpress-secret.yml
+oc delete -f wordpress-secrets.yml
 
 oc get pv,pvc,po,svc

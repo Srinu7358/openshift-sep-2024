@@ -1,7 +1,7 @@
 echo $'\nDeploying mariadb ...\n'
 
 oc apply -f wordpress-cm.yml
-oc apply -f wordpress-secret.yml
+oc apply -f wordpress-secrets.yml
 oc apply -f mariadb-pv.yml
 oc apply -f mariadb-pvc.yml
 oc apply -f mariadb-deploy.yml

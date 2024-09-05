@@ -31,13 +31,13 @@ spec:
         - name: WORDPRESS_DATABASE_USER
           valueFrom:
             secretKeyRef:
-              name: wordpress-secret
+              name: wordpress-secrets
               key: username
 
         - name: WORDPRESS_DATABASE_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: wordpress-secret
+              name: wordpress-secrets
               key: password
 
         - name: WORDPRESS_DATABASE_NAME
