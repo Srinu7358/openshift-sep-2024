@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: wordpress-cm
 data:
-  db_name=wordpress
-  db_port="3306"
- service_name=mariadb
+  db_name: wordpress
+  db_port: "3306"
+ service_name: mariadb
