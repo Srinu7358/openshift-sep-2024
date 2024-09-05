@@ -222,6 +222,7 @@ Expected output
 
 ## High-Level Openshift Architecture
 ![Architecture](openshiftArchitecture.png)
+![OpenShift High Level Architecture](master-node.png)
 
 
 # Info - Pod Overview
@@ -419,6 +420,73 @@ oc - is the command-line openshift client
 kubectl - is the kubernetes command-line client
 both oc and kubectl are supported in openshift cluster
 </pre>
+
+### OpenShift resources
+- Deployment (K8s resource)
+- ReplicaSet (K8s resource)
+- Pod (K8s resource)
+- Job (K8s resource)
+- DaemonSet (K8s resource)
+- StatefulSet (K8s resource)
+- Build ( OpenShift resource - Custom Resource added by OpenShift )
+- ImageStream ( OpenShift resource  - Custom Resource added by OpenShift ) 
+- DeploymentConfig ( OpenShift resource - Custom Resource added by OpenShift )
+
+### Deployment command looks like this
+```
+oc create deployment nginx --image=bitnami/nginx:latest --replicas=3
+```
+
+### Deployment
+- This is a JSON/YAML definition which is stored in etcd database
+- The deployment is managed by Deployment Controller
+- when we applications, they are deployed as Deployment with Kubernetes/OpenShift
+- Deployment Controller creates ReplicaSet, which is then managed by ReplicaSet Controller
+- Deployment has one or more ReplicaSet(s)
+
+### ReplicaSet
+- This is a JSON/YAML definition which is stored in etcd database
+- The ReplicaSet is managed by ReplicaSet Controller
+- ReplicaSet capture details like
+    - How many Pod instances are desired?
+- ReplicaSet Controller reads the ReplicaSet definition and learns the desired Pod instance count
+- ReplicaSet Controller creates so many Pod definition as indicated in the ReplicaSet
+- ReplicaSet Controller ensures the desired Pod count matches with the actual Pod count, whenever a Pod crashes, it is the responsibility of ReplicaSet Controller to ensure the desired and actual Pods are equal
+- ReplicaSet has one or more Pods
+
+### Pod
+- is a collection of one or more Containers
+- IP address is assigned on the Pod level not on the Container level
+- If two containers are in the same Pod, there will be sharing IP Address of the Pod
+- within container, application are deployment ( tomcat,mysql, nginx these are applications )
+- recommended best practice,only one application should be there in a Pod
+- Pods are scheduled by Scheduler onto some Node
+- every Pod has a Network Stack and Network Interface Card (NIC)
+
+### Kubelet
+- is a daemon service that interacts with the Container Runtime on the current node/server where kubelet is running
+- kubelet downloads the required container image and creates the Pod containers
+- kubelet frequently reports the status of Pod container status to the API server
+- kubelet also monitors the health of POds running on the node and ensures they are healthy
+- kubelet will there on every node ( master and worker nodes )
+
+### kube-proxy
+- is a Pod that runs one instance per node (both master and worker nodes)
+- provides load-balancing a group of similar Pods
+
+### Core DNS
+- is a Pod that runs usually on master nodes but in some installation, it might even run on worker node
+- Core DNS offers Service Discovery i.e application will be connect to group of Pods by Service name
+
+### Kubectl
+- is a client tool used to create and manage deployments and services in Kubernetes
+- it also works in OpenShift
+- it make REST call to API Server
+
+### OC
+- is a client tool used to create and manage Openshift resources in OpenShift
+- it makes REST call to API Server
+
 
 ## Day1 - Feedback ( Kindly complete this before your leave for today )
 <pre>
