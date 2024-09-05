@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mariadb-pv-jegan #Replace 'jegan' with your name
+  labels:
+    name: jegan #Replace 'jegan' with your name
+spec:
+  capacity:
+    storage: 100Mi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 192.168.1.108 #Replace this IP with your linux server IP
+    path: /var/nfs/jegan/mariadb #Replace /var/nfs/user02/mariadb
