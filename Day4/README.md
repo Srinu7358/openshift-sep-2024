@@ -280,3 +280,23 @@ git pull
 cd Day4/configs-and-secrets
 ./deploy
 ```
+
+## Info - Helm Overview
+<pre>
+- Helm is a package manager to download, install, uninstall, upgrade applications into Kubernetes/Openshift cluster
+- Helm packaged application is called Charts
+- It can be download from community maintained Helm repositoyr and deploy the application into your Kubernetes/Openshift cluster
+- We could also create our custom Helm charts and deploy them in Kubernetes/Openshift cluster
+</pre>
+
+## Demo - Install Helm 
+```
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
+
+## Lab - Creating a Helm chart for wordpress with mariadb and deploy it in our Openshift cluster
+```
+```
