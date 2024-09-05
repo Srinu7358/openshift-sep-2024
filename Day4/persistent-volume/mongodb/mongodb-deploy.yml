@@ -25,11 +25,8 @@ spec:
 
         volumeMounts:
         - name: mongodb-storage
-          mountPath: /bitnami/mongodb/data
+          mountPath: /bitnami/mongodb
 
         env:
-        - name: MARIADB_ROOT_PASSWORD
+        - name: MONGODB_ROOT_PASSWORD
           value: root@123
-
-        - name: MARIADB_DATABASE
-          value: wordpress
