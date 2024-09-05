@@ -267,3 +267,8 @@ Expected output
 ![image](https://github.com/user-attachments/assets/17a02d4c-b4f1-423a-971f-38eba05be651)
 ![image](https://github.com/user-attachments/assets/b3f41800-6568-43f4-8a36-718acc2eaa83)
 ![image](https://github.com/user-attachments/assets/43754e1e-6f88-4903-8575-d4917a5e6bf4)
+
+## Lab - Statefulset
+<pre>
+https://kubernetes.io/docs/tasks/run-application/run-replicated-stateful-application/  
+</pre>
