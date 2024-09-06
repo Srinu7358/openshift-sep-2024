@@ -92,7 +92,8 @@ downloads   ClusterIP   172.30.113.169   <none>        80/TCP    19h
 [jegan@tektutor.org ~]$ oc get route --all-namespaces | grep console
 openshift-console          console                   console-openshift-console.apps.ocp4.tektutor.org.labs                                  console             https   reencrypt/Redirect     None
 openshift-console          downloads                 downloads-openshift-console.apps.ocp4.tektutor.org.labs                                downloads           http    edge/Redirect          None
-
+</pre>
+  
 ## Lab - List all API Servers from all the master nodes present in the openshift cluster
 ```
 oc get pods -n openshift-kube-apiserver -o wide
