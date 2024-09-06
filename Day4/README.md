@@ -158,7 +158,7 @@ oc get ingresses.config/cluster -o jsonpath={.spec.domain}
 Expected output
 <pre>
 [root@tektutor.org auth]# oc get ingresses.config/cluster -o jsonpath={.spec.domain}
-apps.ocp.tektutor.org.labs	
+apps.ocp4.rps.com	
 </pre>
 
 Let's deploy a microservice and create an edge route as shown below.
@@ -170,52 +170,24 @@ openssl genrsa -out key.key
 
 We need to create a public key using the private key with specific with your organization domain
 ```
-openssl req -new -key key.key -out csr.csr -subj="/CN=hello-jegan.apps.ocp.tektutor.org.labs"
+openssl req -new -key key.key -out csr.csr -subj="/CN=nginx-jegan.apps.ocp4.rps.com"
 ```
 
 Sign the public key using the private key and generate certificate(.crt)
 ```
 openssl x509 -req -in csr.csr -signkey key.key -out crt.crt
-oc create route edge --service spring-ms --hostname hello-jegan.apps.ocp4.tektutor.org.labs --key key.key --cert crt.crt
+oc create route edge --service nginx --hostname nginx-jegan.apps.ocp4.rps.com --key key.key --cert crt.crt
 ```
 
 Expected output
-<pre>
-[jegan@tektutor.org edge-route]$ oc get svc
-NAME        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-spring-ms   ClusterIP   172.30.208.33   <none>        8080/TCP   87m
-[jegan@tektutor.org edge-route]$ oc expose deploy/nginx --port=8080
-service/nginx exposed
-  
-[jegan@tektutor.org edge-route]$ oc get svc
-NAME        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-nginx       ClusterIP   172.30.16.165   <none>        8080/TCP   4s
-spring-ms   ClusterIP   172.30.208.33   <none>        8080/TCP   87m
+![image](https://github.com/user-attachments/assets/563d5b9e-2506-4e3c-bb2c-21ccaa7bf22a)
+![image](https://github.com/user-attachments/assets/bf3cc7ac-43b4-48bb-9566-a7911a2f3371)
+![image](https://github.com/user-attachments/assets/27eb567d-2ced-4e26-8b59-87aecf7f8673)
+![image](https://github.com/user-attachments/assets/da25cdfa-5854-4a64-9084-8f1ca786f84e)
+![image](https://github.com/user-attachments/assets/aa580396-82f3-459e-9780-bc914db05686)
+![image](https://github.com/user-attachments/assets/ab35c872-2307-4838-80ae-87dbf805f542)
+![image](https://github.com/user-attachments/assets/1f839b1e-1070-4fe7-8bf6-2d99a3606f6d)
 
-[jegan@tektutor.org edge-route]$ oc get ingresses.config/cluster -o jsonpath={.spec.domain}
-apps.ocp4.tektutor.org.labs
-  
-[jegan@tektutor.org edge-route]$ oc project
-Using project "jegan-devops" on server "https://api.ocp4.tektutor.org.labs:6443".
-  
-[jegan@tektutor.org edge-route]$ openssl req -new -key key.key -out csr.csr -subj="/CN=nginx-jegan-devops.apps.ocp4.tektutor.org.labs"
-  
-[jegan@tektutor.org edge-route]$ openssl x509 -req -in csr.csr -signkey key.key -out crt.crt
-  
-[jegan@tektutor.org edge-route]$ oc create route edge --service nginx --hostname nginx-jegan-devops.apps.ocp4.tektutor.org.labs --key key.key --cert crt.crt
-route.route.openshift.io/nginx created
-  
-[jegan@tektutor.org edge-route]$ oc get route
-NAME    HOST/PORT                                        PATH   SERVICES   PORT    TERMINATION   WILDCARD
-nginx   nginx-jegan-devops.apps.ocp4.tektutor.org.labs   nginx      <all>   edge          None
-</pre>
-
-![edge](edge1.png)
-![edge](edge2.png)
-![edge](edge3.png)
-![edge](edge4.png)
-![edge](edge5.png)
-![edge](edge6.png)
 
 ## Info - OpenShift Network Model
 
@@ -285,7 +257,7 @@ Expected output
   - when scale down happens a random pod within the deployment will be deleted
   - when scaled up a new pod with random name gets added 
   - hence scaling up/down a stateless application is easy and can be achieved with Deployment
-- Stateful
+- StatefulSet
   - supports Persistent Volume and Persistent Voluem Claims
   - each Pod get an unique and stable identify (name)
   - let's say we create a statefulset named mysql, its first pod will be named mysql-0 which is the sticky pod identify
