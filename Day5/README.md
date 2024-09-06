@@ -297,6 +297,11 @@ Now you should be able to login to your jfrog cloud with your gmail account that
 ![JFrog](jfrog10.png)
 ![JFrog](jfrog11.png)
 ![JFrog](jfrog12.png)
+![image](https://github.com/user-attachments/assets/a0e3e185-943b-481c-be8d-347bfa0ef9b5)
+![image](https://github.com/user-attachments/assets/ce91683c-e576-4add-b908-8316399a76dc)
+![image](https://github.com/user-attachments/assets/ee5e2f8c-19ee-4146-91f9-a1518337fce4)
+![image](https://github.com/user-attachments/assets/78294ae4-d603-4cf5-ae76-d3e977819a4f)
+
 ![JFrog](jfrog13.png)
 
 <pre>
