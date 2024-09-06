@@ -293,7 +293,6 @@ Expected output
 ![Architecture](openshiftArchitecture.png)
 ![OpenShift High Level Architecture](master-node.png)
 
-
 # Info - Pod Overview
 <pre>
 - Pod is a collection of related containers
@@ -398,9 +397,6 @@ Expected output
 ![image](https://github.com/user-attachments/assets/604206a2-b978-4c04-9033-2a4eb9c7fa1f)
 ![image](https://github.com/user-attachments/assets/015ee964-997c-45ca-96b6-5d25a412f998)
 
-
-
-
 ## Info - Kubernetes/Openshift Control Plane Components
 The control plane components only runs in master node
 <pre>
@@ -465,7 +461,8 @@ The control plane components only runs in master node
   - New ReplicaSet created
   - ReplicaSet edited
   - ReplicaSet deleted
-  
+</pre>  
+
 #### Scheduler
 <pre>
 - this is the component that is responsible to find a healthy node where a new Pod can be deployed
