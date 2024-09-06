@@ -57,6 +57,28 @@ Expected output
 - the QA certified build will automatically be deployed into pre-prod environment for the customer to check and approve to decide to make them live in production  
 </pre>
 
+## DevOps Overview
+<pre>
+- whatever technical work we deliver, we need to look for ways to convert them into source code
+- openshift declarative style follows devops philosopy correctly
+- as the openshift manifest yaml files are source code, we can push them into version control
+- for build & test automation (CI/CD), the foremost important thing is the source code should be available in version control
+</pre>
+
+## What are the CI/CD Build Servers available ?
+<pre>
+- Jenkins is open source developed by Josuke Kavaguchi (former Sun Microsystem employee )
+- Hudson was the original Build server that was built by Josuke Kavaguchi and open source community
+- after Oracle acquired Sun Microsystems, due to some conflict in idealogy the Hudson team created a branch/fork called Jenkins and they quit Oracle and they started developing Jenkins as an opensource product
+- Jenkins has more 10000 word-wide opensource contributors
+- the commercial variant of Jenkins is called Cloudbees
+- TeamCity
+- Bamboo
+- CircleCI
+- TFS
+- Tekton
+</pre>
+
 ## Info - What is a Jenkins CI/CD Job?
 <pre>
 - could build application source and run automated test cases
@@ -393,3 +415,68 @@ crictl ps -a
 - both methods, allows us release new version of software without disrupting the existing service
 - the main difference is that blue-green deployments switches all the traffic from old version(blue) to the new version(green) at once
 - while canary deployments gradually exposes a small percentage of the traffic to the new version(canary) and monitor its performance and user behaviour before rolling it out to the wider audience****
+
+## Info - Openshift Service
+<pre>
+- represents a groups of load-balanced pods from the same deployment
+- service will forward the call to any one of the Pod within a single deployment
+</pre>  
+
+## Info - What is Ingress?
+<pre>
+- routing/forwarding rules
+- Ingress helps in forwarding the calls to multiple different services pointing to different deployments
+- Ingress is not a service
+- We can declaratively create ingress rules, which are retreived by Ingress Controller, which then configures the load balancer with the forwarding rules we listing in the ingress
+- For Ingress to work, we need the below
+  - Ingress ( rules )
+  - Ingress Controller
+  - Load Balancer
+</pre>
+
+## Info - What is Ingress Controller?
+- Ingress Controller is Controller like Deployment Controller, ReplicaSet Controller
+- Ingress Controller keeps an eye on every new Ingress created in any project namespace
+- Ingress Controller monitors any change done to existing Ingress resources under any project namespace
+- Ingress Controller also will monitor when Ingress is deleted in any project namespace
+- Ingress Controller picks the rules we mentioned in the Ingress resource and configures the load balancer accordingly
+- There are two popular ingress controllers
+  - Nginx Ingress Controller
+  - HAProxy Ingress Controller
+- In our lab setup, we are using HAProxy Load Balancer, hence we need to use HAProxy Ingress Controller
+
+## Info - Deployment vs DeploymentConfigs
+<pre>
+- In older version of Kubernetes, we had to use ReplicationController to deploy applications into Kubernetes/Openshift
+- The Red Hat openshift team, at that time added DeploymentConfig to allow deploying application in the declarative style as the ReplicationController doesn't support deploying application in the declarative style
+- Meanwhile, the Google Kubernetes team & community added Deployment and ReplicaSet resource as an alternate for ReplicationController
+- Hence, in Openshift the Red Hat team deprecated the use of DeploymentConfig as Deployment and DeploymentConfig pretty does the same
+- Kubernetes, deprecated the use of ReplicationController
+- Hence, whenever we deploy new appplication we need choose Deployment over the DeploymentConfig as DeploymentConfig internally uses ReplicationController
+</pre>
+
+
+## Info - ReplicationController vs ReplicaSet
+- ReplicationController support both Rolling update and Scale up/down, which violates Single Responsibility Principle
+- New applications should consider using Deployment over the ReplicationController
+- When we create deployment, it automatically creates K8s Deployment resource and K8s ReplicaSet resource
+- K8s Deployment resource is managed by Deployment Controller
+- K8s ReplicaSet resource is managed by ReplicaSet Controller
+- Deployment Controller supports rolling update
+- ReplicaSet controller support scale up/down
+- Hence, we should not use ReplicationController any more though it is there for backward compatibilty purpose
+  
+## Info - NodePort vs Route
+<pre>
+- NodePort is an external service
+- It is a K8s features, which is also supported in openshift
+- Kubernetes/Openshift reserve ports in range 30000-32767 for the purpose of NodePorts
+- For each, NodePort service we create one of the ports from the above range will be alloted for the service
+- the chose nodeport is opened in all the nodes for the nodeport service
+- if we create 100 nodeport services, we end up opening 100 firewall ports on all the nodes, which is a security concern
+- also nodeport service is not end-user friendly or developer friendly as they are accessed via node hostname/ip address, ideally the end-user should not have worry about about how many nodes are part of openshift
+- routes is based on Kubernetes ingress, which provides an easy to access public url which is user-friendly as opposed to nodeport service
+- hence, in openshift for internal service, we can create clusterip service
+- for external access, we just need to expose the clusterip service as a route
+- we don't have use node-port service in openshift
+</pre>
