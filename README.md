@@ -4,20 +4,41 @@ Mobile - +91 822-000-5626
 Email  - jegan@tektutor.org
 </pre>
 
-## Installing Openshift on your laptop for your learning purpose
+## My YouTube Channel
+https://www.youtube.com/@JeganathanSwaminathan/videos
 
-You can download code ready containers from
-```
-https://developers.redhat.com/products/openshift-local/getting-started
-```
+## My Blogs
+<pre>
+https://medium.com/@jegan_50867/docker-overview-be840f727b3
 
-Select "Install openshift on your laptop"
-![image](https://github.com/user-attachments/assets/d8b13bb6-a316-42f9-9e85-23e1c14d03a0)
+https://medium.com/tektutor/container-engine-vs-container-runtime-667a99042f3
 
-Select "Download Openshift Local"
-![image](https://github.com/user-attachments/assets/a8c18317-e20d-4440-ad64-4a37bb792a33)
+https://medium.com/@jegan_50867/docker-commands-ba19387383b4
 
-You need to download the code ready containers binary for Linux/windows/Mac as per your requirement.  The pull-secret also need to be downloaded, as the crc setup would prompt for pull secret which is the credentials to downloads images from red hat image registry.
-![image](https://github.com/user-attachments/assets/d4986081-ce84-4d5d-b3b5-8e47ee3953c5)
-![image](https://github.com/user-attachments/assets/ab209443-2541-4cac-8a0b-f5d58f4be250)
-![image](https://github.com/user-attachments/assets/26cce1c7-8e64-410e-bdf6-b00760fe8c56)
+https://medium.com/tektutor/kubernetes-3-node-cluster-setup-50943378be41
+
+https://medium.com/@jegan_50867/kubernetes-lightweight-developer-setup-using-rancher-k3d-a3a94e9b5eb4
+
+https://medium.com/tektutor/kubernetes-3-node-cluster-using-k3s-with-docker-e325cc82fd50
+
+https://medium.com/@jegan_50867/kubernetes-3-node-cluster-using-k3s-d28b2c09e2f7
+</pre>
+
+
+## References
+<pre>
+https://blog.networktocode.com/post/kubernetes-collection-ansible/
+
+https://network-insight.net/2022/05/11/openshift-security-best-practices/ 
+
+https://www.densify.com/openshift-tutorial/openshift-route/  
+</pre>
+
+## Installing Code Ready Containers( OpenShift on Laptop/Desktop )
+https://developers.redhat.com/products/openshift-local/overview
+
+## Using Free RedHat Developer Sandox on cloud - Openshift
+https://console.redhat.com/openshift/sandbox
+
+## Installing a single node Red Hat Openshift
+https://docs.openshift.com/container-platform/4.14/installing/installing_sno/install-sno-installing-sno.html
