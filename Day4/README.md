@@ -5,6 +5,7 @@
 oc exec -it etcd-master01.ocp4.rps.com -c etcdctl -n openshift-etcd sh
 etcdctl get "/kubernetes.io/pods/jegan" --prefix=true
 etcdctl get "/kubernetes.io/deployments/jegan/nginx" --prefix=true
+exit
 ```
 
 ## Info - What is an Openshift Job?
