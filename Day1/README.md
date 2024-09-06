@@ -324,6 +324,8 @@ Expected output
 - it supports rolling update
 - this configuration object is consumed by Deployment Controller
 </pre>
+![deployment](deployment.png)
+
 
 ## Kube config file
 - the oc/kubectl client tools requires a config file that has connection details to the API Server(load balancer)
