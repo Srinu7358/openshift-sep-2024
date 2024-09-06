@@ -68,8 +68,6 @@ Examples
 - containers depend on the Host OS Kernel for any OS functionality
 </pre>
 
-
-
 ## Docker Overview
 <pre>
 - Docker is a Container Engine
@@ -241,9 +239,22 @@ Expected output
 - supports any container runtime/engine as long as there is an implemention of CRI(Container Runtime Interface) to interact with those runtime/engine
 </pre>  
 
+## Info - OKD
+<pre>
+- is opensource Container Orchestration Platform maintained by opensource community
+- is developed on top of Google Kubernetes
+- supports both CLI and webconsole
+- comes with in-built internal Image Registry
+- you only get community support
+- supports user-management
+- supports deploying application from source code is called S2I (Source to Image)  
+- supports CI/CD
+- support Virtualization  
+</pre>
+
 ## Red Hat Openshift Overview
 <pre>
-- Red Hat Openshift is developed on top of Google Kubernetes
+- Red Hat Openshift is developed on top of Opeensource OKD ( which in turn is developed on top of opensource Kubernetes )
 - supports command line interface and webconsole(GUI)
 - supports Role based access control (RBAC), hence multiple users can be created with different level of access to Openshift cluster
 - supports many additional features on top of all the Kubernetes features
