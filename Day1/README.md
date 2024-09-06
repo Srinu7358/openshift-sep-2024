@@ -1,5 +1,38 @@
 # Day 1
 
+## About our lab environment
+- OnPrem Production grade Red Hat OpenShift setup 
+- System Configuration
+  - 48 virtual cores
+  - 755 GB RAM
+  - 17 TB HDD Storage
+- Oracle Linux v9.4 64-bit OS
+- KVM Hypervisor
+- 7 Virtual machines
+  - Master 1 with RHEL Core OS ( 8 Cores, 128GB RAM, 500 GB HDD )
+  - Master 2 with RHEL Core OS ( 8 Cores, 128GB RAM, 500 GB HDD )
+  - Master 3 with RHEL Core OS ( 8 Cores, 128GB RAM, 500 GB HDD )
+  - Worker 1 with RHEL Core OS ( 8 Cores, 128GB RAM, 500 GB HDD )
+  - Worker 2 with RHEL Core OS ( 8 Cores, 128GB RAM, 500 GB HDD )
+  - HAProxy Load Balancer, Bind DNS - Bastion Virtual Machine
+  - BootStrap Virtual Machine
+    - installs control plane components in master nodes
+    - creates an etcd cluster configured etcd pod instances from respective master nodes
+    - configures the HAProxy Load Balancer to act as a load-balancer the master nodes
+    - helps in installing worker node components and join to the worker nodes to the openshift cluster
+
+## What is dual-booting or multi-booting?
+- Let's say we have a laptop with Windows 10 pre-installed and we need to do some prototype in Ubuntu
+- You can use a system utility called Boot Loader like LILO, Grub 1, Grub2
+- When we install boot loaders, it gets installed in your hard disk Master Boot Record(MBR) - Sector 0, Byte 0 in your hard disk (512 bytes)
+- When we boot our machine, BIOS POST (Power On Self Test), once the BIOS is loaded, BIOS will initialize all hardwares and then it then it instructs the CPU to load and run the Boot loader application from MBR
+- The boot application starts scanning for Operating Systems installed on your Hard disk(s), if it finds more than one OS then it gives a menu for you to choose which OS you wish to boot into
+- Only one OS can be active at any point of time
+Examples
+- LILO
+- GRUB
+- BootCamp
+
 ## Hypervisor Overview
 <pre>
 - is hardware virtualization technology
@@ -30,6 +63,18 @@
     - Microsoft Hyper-V
 </pre>
 
+## Linux Kernel Container Features
+1. Namespace
+   - helps in isolating one container from other containers running on the same OS
+      
+2. Control Group(CGroups)
+   - to ensure every container shares the hardware resources co-operatively Control Groups are used
+   - if this isn't not done, at times certain containers uses all the hardwares resources leaving other containers to starve
+   - helps in applying resource quota restrictions like
+     - we can restrict a container on how many CPU Cores it can use at the max at any point of time
+     - we can restrict how much RAM a container use at the max
+     - we can restrict, how much storage a container can use at the max
+
 ## Container Overview
 <pre>
 - is an application virtualization technology
@@ -46,10 +91,21 @@
 
 ## Docker Overview
 <pre>
-- Docker is developed in Go lang by a company named Docker Inc
-- its comes in 2 flavours
-  1. Docker Community Edition
-  2. Docker Enterprise Edition
+- Docker is a Container Engine
+- Developed in Golang by a company called Docker Inc
+- comes in 2 flavours
+  1. Docker Community Edition - Docker CE ( Free )
+  2. Docker Enterprise Edition - Docker EE ( Paid )
+- follows Client/Server Architecture
+- Docker Registry
+  - collection of many Docker Images
+- Supports 3 types of Docker Registries
+  1. Local Docker Registry
+  2. Private Docker Registry
+    - setup using JFrog Artifactory or Sonatype Nexus
+  3. Remote Docker Registry
+    - website maintained by Docker Inc 
+    - provides many opensource docker images  
 </pre>
 
 ## High-Level Docker Architecture
@@ -112,7 +168,7 @@ Expected output
   - Nginx Container Image ( nginx:latest )
 </pre>  
 
-## Container Registries Overview
+## Container Registry Overview
 <pre>
 - Docker supports 3 types of Container Registries
   1. Local Docker Registry
@@ -204,9 +260,22 @@ Expected output
 - supports any container runtime/engine as long as there is an implemention of CRI(Container Runtime Interface) to interact with those runtime/engine
 </pre>  
 
+## Info - OKD
+<pre>
+- is opensource Container Orchestration Platform maintained by opensource community
+- is developed on top of Google Kubernetes
+- supports both CLI and webconsole
+- comes with in-built internal Image Registry
+- you only get community support
+- supports user-management
+- supports deploying application from source code is called S2I (Source to Image)  
+- supports CI/CD
+- support Virtualization  
+</pre>
+
 ## Red Hat Openshift Overview
 <pre>
-- Red Hat Openshift is developed on top of Google Kubernetes
+- Red Hat Openshift is developed on top of Opeensource OKD ( which in turn is developed on top of opensource Kubernetes )
 - supports command line interface and webconsole(GUI)
 - supports Role based access control (RBAC), hence multiple users can be created with different level of access to Openshift cluster
 - supports many additional features on top of all the Kubernetes features
@@ -257,6 +326,46 @@ Expected output
 - this configuration object is consumed by Deployment Controller
 </pre>
 
+## Kube config file
+- the oc/kubectl client tools requires a config file that has connection details to the API Server(load balancer)
+- the config file is generally kept in user home directory, .kube folder and the default name of kubeconfig is config
+- optionally we could also use the --kubeconfig flag with the oc command to point to a config file
+- it is also possible to use a KUBECONFIG environment variable to point to the config file
+- Just to give an idea, it is possible that your Kubernetes/OpenShift is running in AWS/Azure but you could install oc/kubectl client tool on your laptop with a config file and still run all the oc/kubectl commands from your laptop without going to aws/azure
+
+To print the content of kubeconfig file
+```
+cat ~/.kube/config
+```
+## About Red Hat Enterpise Core OS ( RHCOS )
+- an optimized operating system created especially for the use of Container Orchestration Platforms
+- each version of RHCOS comes with a specific version of Podman Container Engine and CRI-O Container Runtime
+- RHCOS enforces many best practices and security features
+- it allows writing to only folders the application will has read/write access
+- if an application attempts to modify a read-only folder RHCOS will not allow those applications to continue running
+- RHCOS also reserves many Ports for the internal use of Openshift
+- User applications will not have write access to certain reserved folders, user applications are allowed to perform things as non-admin users only, only certain special applications will have admin/root access
+
+### Points to remember
+- Red Hat Openshift uses RedHat Enterprise Linux Core OS
+- RHCOS has many restrictions or insists best practises
+- RHEL Core OS reserves ports under 1024 for its internal use
+- Many folders within the OS is made as ready only
+- Any application Pod attempts to perform write operation on those restricted folders will not be allowed to run
+- For detailed documentation, please refer official documentation here https://docs.openshift.com/container-platform/4.8/architecture/architecture-rhcos.html
+
+## Info - Pod Lifecycle
+- Pending - Container image gets downloads or there are no Persistent Volume to bound and claim them
+- Running - The Pod is scheduled to a node and all containers in the Pod are up and running
+- Succeeded - All containers in the Pod have terminated succesfully and not be restarted
+- Failed - All containers in the Pod have terminated but one or more containers terminated with non-zero status or was terminated by Openshift
+- Unknown - For some reason, the state of the Pod could not be obtained may be there is some problem in communicating to the node where the Pod is running
+
+## Info - Container Lifecycle
+- Waiting - pulling the container image
+- Running - container is running without issues
+- Terminated - container in the Terminated state began execution and then either ran to completion or failed for some reason
+
 ## Lab - Checking the openshift tool version
 ```
 oc version
@@ -304,10 +413,20 @@ The control plane components only runs in master node
 #### API Server
 <pre>
 - API Server is the heart of Kubernetes/Openshift
-- for every Openshift features there is a set of APIs supported by API Server
+- supports REST API for all the features supported by OpenShift
 - all the control plane components interacts only with API Server by making a REST call
 - API Server stores/updates/retrieves the cluster status, application status into etcd database
 - each change that is done in the etcd database will result in API Server raising events
+- all the Openshift components will be communicate only to API Server
+- other components are not allowed to communicate with each other directly
+- every components communication flows via API Server only in Kubernetes/Openshift
+- API Server maintains the nodes, cluster, application status in the etcd database
+- only API Server will have access to etcd database
+- In our openshift cluster, 3 master nodes are there, hence 3 API Servers i.e one API Server per master node is there
+- API Server sends broadcasting events whenever any update happens in the etcd database
+  - new record added
+  - existing record updated
+  - existing record deleted
 </pre>
 
 #### Etcd database
@@ -321,18 +440,41 @@ The control plane components only runs in master node
 
 #### Controller Managers
 <pre>
-- To manage each type of resource in Kubernetes/Openshift there is a dedicated Controller
+- it is a collection of many controllers
 - Controllers are deployed as Pods
 - Each Controller watches the cluster
   - when new resources are created
   - when existing resources in etcd are edited/updated
   - when existing resource are deleted from etcd
 - Based on the events from API server the Controller job to reconcile based on updated configuration objects
-</pre>  
-
+- Some controllers within Controller Manager Pod
+  - Deployment Controller
+  - ReplicaSet Controller
+  - EndPoitnt Controller
+  - Job Controller
+  - StatefulSet Controller
+  - DaemonSet Controller
+- Each Controller manages one type of Kubernetes/OpenShift resource
+- For example
+  - Deployment Controller manages Deployment resource
+- Deployment Controller watches for events related to Deployment Resource
+  - New deployment created
+  - Depoyment edited
+  - Deployment deleted
+- ReplicaSet Controller watches for events from API Server related to ReplicaSet Resource
+  - New ReplicaSet created
+  - ReplicaSet edited
+  - ReplicaSet deleted
+  
 #### Scheduler
 <pre>
-- When new Pods are created, the Scheduler identifies a healthy node and sends the scheduling recommendations to API server via REST call  
+- this is the component that is responsible to find a healthy node where a new Pod can be deployed
+- Scheduler sends its scheduling recommendataion to API Server
+- API Server updates the scheduling info on each Pod stored in the etcd database
+- API Server broadcasts events for each Pod deployed onto some node
+- Kubelet is the container agent that runs in every node ( master and worker nodes)
+- kubelet downloads the container image, creates and starts the container
+- kubelet keeps monitoring the status of the container running on the local node and reports the status on a heart-beat like periodic fashion to the API Server
 </pre>  
 
 ## Info - Understanding Red Hat Openshift installation
@@ -354,7 +496,7 @@ The control plane components only runs in master node
     - Red Hat Openshift master node ignition file
     - Red Hat Openshift worker node ignition file
     - Red Hat Openshift bootstrap node ignition file
-- BootStrap Virtual Machine ( Temporary VM to setup Openshift master nodes )
+- BootStrap Virtual Machine ( Virtual Machine - used to setup Openshift master and worker nodes )
   - Red Hat Enterprise Core OS
   - In order to install openshift, the openshift installer creates a simple Kubernetes cluster within BootStrap Virtual Machine
   - The BootStrap Virtual Machine - Kubernetes cluster installs the required openshift master node components into master-1, master-2 and master-3 VMs
@@ -486,9 +628,3 @@ oc create deployment nginx --image=bitnami/nginx:latest --replicas=3
 ### OC
 - is a client tool used to create and manage Openshift resources in OpenShift
 - it makes REST call to API Server
-
-
-## Day1 - Feedback ( Kindly complete this before your leave for today )
-<pre>
-https://survey.zohopublic.com/zs/GtCUrD  
-</pre>

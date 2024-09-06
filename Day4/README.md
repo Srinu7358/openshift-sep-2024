@@ -1,9 +1,15 @@
 # Day 4
 
 ## Info - How to see the values stored inside etcd database?
+```
+oc exec -it etcd-master01.ocp4.rps.com -c etcdctl -n openshift-etcd sh
+etcdctl get "/kubernetes.io/pods/jegan" --prefix=true
+etcdctl get "/kubernetes.io/deployments/jegan/nginx" --prefix=true
+exit
+```
 
 ## Info - What is an Openshift Job?
-- any one time activity we can create them as a Job
+- any one-time activity we can create them as a Job
 - Example
   - delete all Persistent Volume which are unused
   - taking backup of etcd database
@@ -26,7 +32,7 @@ oc logs job/hello-job
 
 Once you are done with the exercise, you may cleanup the resources
 ```
-cd ~/openshift-27may-2024
+cd ~/openshift-sep-2024
 cd Day4/job
 oc delete -f job.yml
 ```
@@ -34,7 +40,7 @@ oc delete -f job.yml
 ## Lab - Create a recurring job using Cronjob
 
 ```
-cd ~/openshift-27may-2024
+cd ~/openshift-sep-2024
 git pull
 cd Day4/cronjob
 oc apply -f cronjob.yml
@@ -45,7 +51,7 @@ oc logs cronjobs/cron-job
 
 Once you are done with this exercise, you may delete the cronjob
 ```
-cd ~/openshift-27may-2024
+cd ~/openshift-sep-2024
 cd Day4/cronjob
 
 oc delete -f cronjob.yml
@@ -224,16 +230,16 @@ nginx   nginx-jegan-devops.apps.ocp4.tektutor.org.labs   nginx      <all>   edge
 ## Info - Persistent Volume Overview
 <pre>
 - any application that stores/retrieves data they could either use the Pod storage or external storage
-- as the Pod life time is short, storing the permanent data in a short lived Pod doesn't sound correct
+- as the Pod's life time is short, storing the permanent data in a short lived Pod doesn't sound correct
 - hence, it is considered a bad practice to modify a pod once it is created
 - as per devops philosophy, we must use containers, Pods like an immutable(read-only) resource, though it is mutable
 - hence, we should be using some external storage to persistent our application logs, database, etc
 - Openshift Administrators can provision external storage either manually or dynamically
-- In case the Administrators prefer povisioning the Persistent Volume(storage) manually, they need to create PV with various size, access permissions, etc as per dev/qa/prod requirement
-- The Persistent Volume (PV -storage) can be provisioned
+- In case the Administrators prefer povisioning the Persistent Volume(storage) manually, they need to create PV with various size, access permissions, etc as per dev/qa/operation team's requirement
+- The Persistent Volume (PV storage) can be provisioned
   - from NFS Server ( we would be using NFS Server )
-  - Some storage solution in on-prem setup
-  - could AWS S3 buckets, AWS EBS, Azure Storage, etc.
+  - Some storage solution in on-premise environment
+  - could use AWS S3 buckets, AWS EBS, Azure Storage, etc.
 - the Persistent Volume will have the below parameters
   - disk size
   - access mode
@@ -244,14 +250,15 @@ nginx   nginx-jegan-devops.apps.ocp4.tektutor.org.labs   nginx      <all>   edge
 
 ## Info - Persistent Volume Claim Overview
 <pre>
-- application Pods are created in a project scoped, hence the PVC is also created within a project 
-- any application (Pod) that needs storage will have ask Openshift by creating a Peristent Volume Claim
+- application Pods are created within a project, hence the PVC is also created within a project 
+- any application (Pod) that needs storage will have to ask Openshift by creating a Peristent Volume Claim
 - the PVC will define the below
   - size of the storage required
   - access mode expected
   - storageclass(optional)
   - any label restrictions (optional)
 - openshift will search the cluster for a matching Persistent Volume and if it finds a matching PV, it let's your application claim and use it
+- in case openshift is not able to find a matching Persistent Volume against a Persistent Volume Claim, the Pod will be kept in Pending state as it won't be able to proceed without storage(PVC--->PV)
 </pre>
 
 ## Lab - Deploying multipod application Wordpress with MariaDB database
@@ -268,10 +275,45 @@ Expected output
 ![image](https://github.com/user-attachments/assets/b3f41800-6568-43f4-8a36-718acc2eaa83)
 ![image](https://github.com/user-attachments/assets/43754e1e-6f88-4903-8575-d4917a5e6bf4)
 
+## Info - StatefulSet Overview
+<pre>
+- Deployment is an Openshift/Kubernetes component through which we deploy stateless applications
+- StatefulSet is an Openshift/kubernetes component through which we deply stateful applications
+- Deployment
+  - supports Persistent Volume and Persistent Volume Claims
+  - each Pod gets a random name when Deployment is scaled up/down,hence pod names are unpredicatable
+  - when scale down happens a random pod within the deployment will be deleted
+  - when scaled up a new pod with random name gets added 
+  - hence scaling up/down a stateless application is easy and can be achieved with Deployment
+- Stateful
+  - supports Persistent Volume and Persistent Voluem Claims
+  - each Pod get an unique and stable identify (name)
+  - let's say we create a statefulset named mysql, its first pod will be named mysql-0 which is the sticky pod identify
+  - even if the mysql-0 master Pod crashes, the new pod even if runs in a different node it will be created with exact same name mysql-0. This is important otherwise the headless service that refers to mysql-0 Pod will not work
+  - if mysql-1 slave Pod crashes, the new pod could be scheduled on the same/different node but its name will be mysql-1 for sure. This is important for the mysql-2 Pod as it will be dependent on mysql-1 Pod to synchronize the data
+  - when a statefulset is scaled up
+    - it will ensure the first pod mysql-0 is created and running successfully
+    - the second pod with an unique name mysql-1 will be created
+    - the third pod with an unique naem mysql-2 will be created only after ensuring mysql-1 pod is successfully runing
+  - when a statefulset is scaled down
+    - it is guaranteed the last pod i.e mysql-2 will be deleted first followed by mysql-1 and so on
+  - allows each Pod using a separate storage(Persistent Volume and Claim)
+  - ideal for creating a cluster of database Pods
+  - the first pod in statefulset can be configured to act as a master, while the other Pods can be configured to act as a slave
+  - while StatefulSet gives all facilities to create a cluster of database/stateful application pods, we still have to manually do the configuration required to setup a db cluster ourselves
+  - creating a cluster of legacy db servers requires only the master pod ( mysql-0 ) with write access to database
+  - while other slave pods ( mysql-1, mysql-2, etc., ) has only read-only access
+  - the mysql-1 when created, it clones mysql-0 Pod data and then starts synchronizing in its own copy as new changes happens in mysql-0
+  - the mysql-2 when created, it clones mysql-1 Pod and then starts synchronizing a new changes as it happens in mysql-1
+  - generally statefulset applications gets atleast two services, one head-less service without any IP and other service which load balances between all the replicas of read-only pods
+</pre>  
+
+
 ## Lab - Statefulset
 <pre>
-https://kubernetes.io/docs/tasks/run-application/run-replicated-stateful-application/  
+
 </pre>
+
 
 ## Lab - Using ConfigMap and Secrets and avoid hard coding
 ```
@@ -317,4 +359,3 @@ Expected output
 ![image](https://github.com/user-attachments/assets/4909dddd-c00a-47a0-81ed-1b06c51ade15)
 ![image](https://github.com/user-attachments/assets/014ea511-a76b-4554-9710-49ddab578124)
 ![image](https://github.com/user-attachments/assets/d03ae30d-ea91-4f1f-a4c4-e4177b374765)
-
