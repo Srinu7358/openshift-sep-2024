@@ -1,5 +1,15 @@
 # Day 5
 
+## Post Test - kindly complete it 
+<pre>
+https://rpsconsulting116.examly.io/contest/public?U2FsdGVkX19TihCQwDRHmgXZDRlw9y6idLkuzas31HslpUGeBzcqEx8anFSWbG/DN/yZNwVSDWuWCKdgB5+DMw==
+</pre>
+
+## Feedback - Kindly share your training feedback here
+<pre>
+https://survey.zohopublic.com/zs/YCBTBf
+</pre>
+
 ## Lab - Scheduling pods matching a specific node criteria
 There are 2 types of Node Affinity possible
 1. Preferred During Scheduling Ignored During Execution
