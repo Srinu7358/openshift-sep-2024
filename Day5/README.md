@@ -245,6 +245,10 @@ oc logs -f bc/hello
 ```
 
 Expected output
+![image](https://github.com/user-attachments/assets/06823040-1046-44d1-b3f6-b766afbe4ee2)
+![image](https://github.com/user-attachments/assets/e4053111-1c86-4c79-b1bd-d779ac56d51d)
+![image](https://github.com/user-attachments/assets/8c5c104d-5fe3-485c-a3a7-249d69f81bde)
+![image](https://github.com/user-attachments/assets/bd26822f-ea4b-4d93-9cf2-de63bc364f2f)
 
 
 ## Info - What is Continuous Integration?
