@@ -1,5 +1,38 @@
 # Day 5
 
+## Lab - Creating an edge route for nginx deployment
+
+Let's deploy nginx inside a project
+```
+oc new-project jegan
+oc create deployment nginx --image=bitnami/nginx:latest --replicas=3
+oc expose deploy/nginx --port=8080
+```
+
+Find your base domain of your openshift cluster
+```
+oc get ingresses.config/cluster -o jsonpath={.spec.domain}
+```
+
+Let's generate a private key
+```
+openssl version
+openssl genrsa -out key.key
+```
+
+We need to create a public key using the private key with specific with your organization domain
+```
+openssl req -new -key key.key -out csr.csr -subj="/CN=nginx-jegan.apps.ocp4.tektutor.org.labs"
+```
+
+Sign the public key using the private key and generate certificate(.crt)
+```
+openssl x509 -req -in csr.csr -signkey key.key -out crt.crt
+oc create route edge --service nginx --hostname nginx-jegan.apps.ocp4.tektutor.org.labs --key key.key --cert crt.crt
+```
+
+Expected output
+
 ## Lab - Creating a JFrog Artifactory 14 days cloud trial
 
 You need to create a trial JFrog Artifactory (14-days Cloud Trial) @ https://jfrog.com/start-free/#trialOptions with your personal gmail account (No credit cards required)
