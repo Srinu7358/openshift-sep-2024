@@ -318,6 +318,27 @@ Accept all the default and click "Create" button
 https://www.ibm.com/support/pages/failed-pull-image-during-manage-activation-due-integrated-container-image-registry-not-configured  
 </pre>
 
+## Info - What is S2I in Openshift?
+<pre>
+- S2I - stands for Souce to Image
+- In order to deploy our applications into Kubernetes we need to prepare/use Container Image
+- In case of Kubernetes, the Container Image is created outside Kubernetes manually using our favourite tools
+- In Openshift, we can deploy our application from source code from GitHub, BitBucket, Gitlab etc.,
+- Openshift S2I
+  - clones your source code from your version control
+  - builds your application binary
+  - prepares a custom Container Image using Dockerfile you have in GitHub
+  - or prepares a custom Container Image based on your preference ( this doesn't require you supplying Dockerfile )
+  - pushes the image to Openshift's Internal Registry
+  - deploys the application into Openshift from your custom Image cached in Openshift's Internal Registry
+- Some of the popular S2I stategies are
+  - source 
+    - you just provide your source code and mention the docker image that should be used to build and deploy your application
+    - Dockerfile is not required
+  - docker
+    - your source code should also have Dockerfile apart from your application source code
+</pre>
+
 ## Lab - Deploying a Custom Java springboot application using docker strategy from CLI
 ```
 oc project
