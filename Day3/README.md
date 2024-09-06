@@ -54,6 +54,8 @@ oc create deployment nginx --image=bitnami/nginx:latest --replicas=3
 - the kubelet keeps sending this kind of container status updates to API Server like a heart beat fashion
 - the API keeps the Pod status updated based on the status reported by kubelet
 </pre>
+![OpenShift](openshift-internals.png)
+
 
 ## OpenShift Operators
 <pre>
@@ -64,12 +66,14 @@ oc create deployment nginx --image=bitnami/nginx:latest --replicas=3
      - Deployment Controller manages Deployment
      - ReplicaSet Controller manages ReplicaSet
 </pre>    
+
 ## How Custom Resource(CR) are added to OpenShift cluster?
 <pre>
 - We need to define Custom Resource Definition(CRD)
 - CRDs introduce/register a new type of Custom Resource(CR) to your OpenShift cluster
 - CRDs themselves doesn't add a Custom Resource(CR), we need to create them ourselves
 </pre>
+
 ## What is an OpenShift Controller?
 <pre>
 - it is an application that runs within the OpenShift cluster that monitors a specific type of Resource
