@@ -26,7 +26,7 @@ oc logs job/hello-job
 
 Once you are done with the exercise, you may cleanup the resources
 ```
-cd ~/openshift-27may-2024
+cd ~/openshift-sep-2024
 cd Day4/job
 oc delete -f job.yml
 ```
@@ -34,7 +34,7 @@ oc delete -f job.yml
 ## Lab - Create a recurring job using Cronjob
 
 ```
-cd ~/openshift-27may-2024
+cd ~/openshift-sep-2024
 git pull
 cd Day4/cronjob
 oc apply -f cronjob.yml
@@ -45,7 +45,7 @@ oc logs cronjobs/cron-job
 
 Once you are done with this exercise, you may delete the cronjob
 ```
-cd ~/openshift-27may-2024
+cd ~/openshift-sep-2024
 cd Day4/cronjob
 
 oc delete -f cronjob.yml
@@ -268,10 +268,44 @@ Expected output
 ![image](https://github.com/user-attachments/assets/b3f41800-6568-43f4-8a36-718acc2eaa83)
 ![image](https://github.com/user-attachments/assets/43754e1e-6f88-4903-8575-d4917a5e6bf4)
 
+## Info - StatefulSet Overview
+<pre>
+- Deployment is an Openshift/Kubernetes component through which we deploy stateless applications
+- StatefulSet is an Openshift/kubernetes component through which we deply stateful applications
+- Deployment
+  - supports Persistent Volume and Persistent Volume Claims
+  - each Pod gets a random name when Deployment is scaled up/down
+  - when scale down happens a random pod within the deployment will be deleted
+  - when scaled up a new pod with random name gets added 
+  - hence scaling up/down a stateless application is easy and can be achieved with Deployment
+- Stateful
+  - supports Persistent Volume and Persistent Voluem Claims
+  - each Pod get an unique and stable identify
+  - let's say we create a statefulset named mysql, its first pod will be named mysql-0 which is the sticky pod identify
+  - even if the mysql-0 Pod crashes, the new pod even if runs in a different nod it will be created with exact same name mysql-0
+  - when a statefulset is scaled up
+    - it will ensure the first pod mysql-0 is created and running successfully
+    - the second pod with an unique name mysql-1 will be created
+    - the third pod with an unique naem mysql-2 will be created only after ensuring mysql-1 pod is successfully runing
+  - when a statefulset is scaled down
+    - it is guaranteed the last pod i.e mysql-2 will be deleted first followed by mysql-1 and so on
+  - allows each Pod using a separate storage(Persistent Volume and Claim)
+  - ideal for creating a cluster of database Pods
+  - the first pod in statefulset can be configured to act as a master, while the other Pods can be configured to act as a slave
+  - while StatefulSet gives all facilities to create a cluster of database/stateful application pods, we still have to manually do the configuration required to setup a db cluster ourselves
+  - creating a cluster of legacy db servers requires only the master pod ( mysql-0 ) with write access to database
+  - while other slave pods ( mysql-1, mysql-2, etc., ) has only read-only access
+  - the mysql-1 when created, it clones mysql-0 Pod data and then starts synchronizing in its own copy as new changes happens in mysql-0
+  - the mysql-2 when created, it clones mysql-1 Pod and then starts synchronizing a new changes as it happens in mysql-1
+  - generally statefulset applications gets atleast two services, one head-less service without any IP and other service which load balances between all the replicas of read-only pods
+</pre>  
+
+
 ## Lab - Statefulset
 <pre>
-https://kubernetes.io/docs/tasks/run-application/run-replicated-stateful-application/  
+
 </pre>
+
 
 ## Lab - Using ConfigMap and Secrets and avoid hard coding
 ```
@@ -317,4 +351,3 @@ Expected output
 ![image](https://github.com/user-attachments/assets/4909dddd-c00a-47a0-81ed-1b06c51ade15)
 ![image](https://github.com/user-attachments/assets/014ea511-a76b-4554-9710-49ddab578124)
 ![image](https://github.com/user-attachments/assets/d03ae30d-ea91-4f1f-a4c4-e4177b374765)
-
