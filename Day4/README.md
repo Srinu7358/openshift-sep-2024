@@ -9,7 +9,7 @@ exit
 ```
 
 ## Info - What is an Openshift Job?
-- any one time activity we can create them as a Job
+- any one-time activity we can create them as a Job
 - Example
   - delete all Persistent Volume which are unused
   - taking backup of etcd database
