@@ -1,5 +1,17 @@
 # Day 1
 
+## What is dual-booting or multi-booting?
+- Let's say we have a laptop with Windows 10 pre-installed and we need to do some prototype in Ubuntu
+- You can use a system utility called Boot Loader like LILO, Grub 1, Grub2
+- When we install boot loaders, it gets installed in your hard disk Master Boot Record(MBR) - Sector 0, Byte 0 in your hard disk (512 bytes)
+- When we boot our machine, BIOS POST (Power On Self Test), once the BIOS is loaded, BIOS will initialize all hardwares and then it then it instructs the CPU to load and run the Boot loader application from MBR
+- The boot application starts scanning for Operating Systems installed on your Hard disk(s), if it finds more than one OS then it gives a menu for you to choose which OS you wish to boot into
+- Only one OS can be active at any point of time
+Examples
+- LILO
+- GRUB
+- BootCamp
+
 ## Hypervisor Overview
 <pre>
 - is hardware virtualization technology
@@ -30,6 +42,18 @@
     - Microsoft Hyper-V
 </pre>
 
+## Linux Kernel Container Features
+1. Namespace
+   - helps in isolating one container from other containers running on the same OS
+      
+2. Control Group(CGroups)
+   - to ensure every container shares the hardware resources co-operatively Control Groups are used
+   - if this isn't not done, at times certain containers uses all the hardwares resources leaving other containers to starve
+   - helps in applying resource quota restrictions like
+     - we can restrict a container on how many CPU Cores it can use at the max at any point of time
+     - we can restrict how much RAM a container use at the max
+     - we can restrict, how much storage a container can use at the max
+
 ## Container Overview
 <pre>
 - is an application virtualization technology
@@ -43,6 +67,8 @@
 - contianers does'nt have OS Kernel
 - containers depend on the Host OS Kernel for any OS functionality
 </pre>
+
+
 
 ## Docker Overview
 <pre>
@@ -304,10 +330,20 @@ The control plane components only runs in master node
 #### API Server
 <pre>
 - API Server is the heart of Kubernetes/Openshift
-- for every Openshift features there is a set of APIs supported by API Server
+- supports REST API for all the features supported by OpenShift
 - all the control plane components interacts only with API Server by making a REST call
 - API Server stores/updates/retrieves the cluster status, application status into etcd database
 - each change that is done in the etcd database will result in API Server raising events
+- all the Openshift components will be communicate only to API Server
+- other components are not allowed to communicate with each other directly
+- every components communication flows via API Server only in Kubernetes/Openshift
+- API Server maintains the nodes, cluster, application status in the etcd database
+- only API Server will have access to etcd database
+- In our openshift cluster, 3 master nodes are there, hence 3 API Servers i.e one API Server per master node is there
+- API Server sends broadcasting events whenever any update happens in the etcd database
+  - new record added
+  - existing record updated
+  - existing record deleted
 </pre>
 
 #### Etcd database
@@ -321,18 +357,41 @@ The control plane components only runs in master node
 
 #### Controller Managers
 <pre>
-- To manage each type of resource in Kubernetes/Openshift there is a dedicated Controller
+- it is a collection of many controllers
 - Controllers are deployed as Pods
 - Each Controller watches the cluster
   - when new resources are created
   - when existing resources in etcd are edited/updated
   - when existing resource are deleted from etcd
 - Based on the events from API server the Controller job to reconcile based on updated configuration objects
-</pre>  
-
+- Some controllers within Controller Manager Pod
+  - Deployment Controller
+  - ReplicaSet Controller
+  - EndPoitnt Controller
+  - Job Controller
+  - StatefulSet Controller
+  - DaemonSet Controller
+- Each Controller manages one type of Kubernetes/OpenShift resource
+- For example
+  - Deployment Controller manages Deployment resource
+- Deployment Controller watches for events related to Deployment Resource
+  - New deployment created
+  - Depoyment edited
+  - Deployment deleted
+- ReplicaSet Controller watches for events from API Server related to ReplicaSet Resource
+  - New ReplicaSet created
+  - ReplicaSet edited
+  - ReplicaSet deleted
+  
 #### Scheduler
 <pre>
-- When new Pods are created, the Scheduler identifies a healthy node and sends the scheduling recommendations to API server via REST call  
+- this is the component that is responsible to find a healthy node where a new Pod can be deployed
+- Scheduler sends its scheduling recommendataion to API Server
+- API Server updates the scheduling info on each Pod stored in the etcd database
+- API Server broadcasts events for each Pod deployed onto some node
+- Kubelet is the container agent that runs in every node ( master and worker nodes)
+- kubelet downloads the container image, creates and starts the container
+- kubelet keeps monitoring the status of the container running on the local node and reports the status on a heart-beat like periodic fashion to the API Server
 </pre>  
 
 ## Info - Understanding Red Hat Openshift installation
@@ -354,7 +413,7 @@ The control plane components only runs in master node
     - Red Hat Openshift master node ignition file
     - Red Hat Openshift worker node ignition file
     - Red Hat Openshift bootstrap node ignition file
-- BootStrap Virtual Machine ( Temporary VM to setup Openshift master nodes )
+- BootStrap Virtual Machine ( Virtual Machine - used to setup Openshift master and worker nodes )
   - Red Hat Enterprise Core OS
   - In order to install openshift, the openshift installer creates a simple Kubernetes cluster within BootStrap Virtual Machine
   - The BootStrap Virtual Machine - Kubernetes cluster installs the required openshift master node components into master-1, master-2 and master-3 VMs
@@ -486,9 +545,3 @@ oc create deployment nginx --image=bitnami/nginx:latest --replicas=3
 ### OC
 - is a client tool used to create and manage Openshift resources in OpenShift
 - it makes REST call to API Server
-
-
-## Day1 - Feedback ( Kindly complete this before your leave for today )
-<pre>
-https://survey.zohopublic.com/zs/GtCUrD  
-</pre>
