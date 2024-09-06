@@ -232,6 +232,21 @@ oc create secret docker-registry private-jfrog-image-registry-new --docker-serve
 
 oc get secrets
 ```
+You need to update the buildconfig-pushto-artifactory.yml under Day5/BuildConfig to match the JFrog url and docker registry as per your JFrog setup. The start-build command, creates an instance of the buildconfig called Build. For each build, one Pod will be created to run the appliction build followed by image build.
+```
+cd ~/openshift-sep-2024
+git pull
+
+cd Day5/BuildConfig
+oc apply -f buildconfig-pushto-artifactory.yml
+oc get buildconfigs
+oc start-build bc/hello
+oc logs -f bc/hello
+```
+
+Expected output
+
+
 ## Info - What is Continuous Integration?
 <pre>
 - Jenkins - is a CI Build Server
