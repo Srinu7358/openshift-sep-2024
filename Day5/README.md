@@ -214,7 +214,22 @@ Expected output
 ![image](https://github.com/user-attachments/assets/3907840e-ee49-4a84-b16f-1b7fdab91bb0)
 
 
+## Lab - Buiding spring-boot sample microservice application using BuildConfig and push the image to Private JFrog Artifactory
+This build config does the following
+<pre>
+- clones the github repo https://github.com/tektutor/openshift-sep-2024.git
+- buids the java spring boot application under Day5/BuildConfig folder
+- builds custom docker image and pushes the image to jfrogsep2024.jfrog.io
+- it follows Docker strategy, hence it looks for Dockerfile under Day5/BuildConfig folder
+- it follows the instructions in the Dockerfile
+- in order to push image to private jfrog artifactory docker registry, it need JFrog Artifactory login credentials
+- we also need to create a secret to capture the JFrog Artifactory login credentials so that BuildConfig can use it to push the image
+</pre>
 
+Create a secret with the JFrog Artifactory Login Credentials
+```
+oc create secret docker-registry private-jfrog-image-registry
+```
 ## Info - What is Continuous Integration?
 <pre>
 - Jenkins - is a CI Build Server
