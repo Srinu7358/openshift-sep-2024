@@ -1,6 +1,11 @@
 # Day 4
 
 ## Info - How to see the values stored inside etcd database?
+```
+oc exec -it etcd-master01.ocp4.rps.com -c etcdctl -n openshift-etcd sh
+etcdctl get "/kubernetes.io/pods/jegan" --prefix=true
+etcdctl get "/kubernetes.io/deployments/jegan/nginx" --prefix=true
+```
 
 ## Info - What is an Openshift Job?
 - any one time activity we can create them as a Job
