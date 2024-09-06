@@ -27,8 +27,8 @@ In case, you are able to list the nodes in the openshift cluster but the web con
 oc -n openshift-console get service
 oc -n openshift-console get pods
 
-oc -n openshift-ingress get pod -o json | \
-  jq -r '.items[].metadata.name' | \
+oc -n openshift-ingress get pod -o json | 
+  jq -r '.items[].metadata.name' | 
   xargs oc -n openshift-ingress delete pod
 
 oc -n openshift-console get pods -o wide -w
@@ -37,6 +37,61 @@ oc get route --all-namespaces | grep console
 oc describe console -n openshift-console
 ```
 
+Expected output
+<pre>
+[jegan@tektutor.org ~]$ oc -n openshift-console get service
+NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+console     ClusterIP   172.30.93.1      <none>        443/TCP   19h
+downloads   ClusterIP   172.30.113.169   <none>        80/TCP    19h
+
+[jegan@tektutor.org ~]$ oc -n openshift-console get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+console-7644f4994f-449vg     1/1     Running   0          19h
+console-7644f4994f-gm8qk     1/1     Running   0          19h
+downloads-86d9bcf76d-9tmjm   1/1     Running   0          19h
+downloads-86d9bcf76d-xzkm2   1/1     Running   0          19h
+
+[jegan@tektutor.org ~]$ oc -n openshift-ingress get pod -o json |
+  jq -r '.items[].metadata.name' |
+  xargs oc -n openshift-ingress delete pod
+  
+pod "router-default-6fbc577945-lrcj5" deleted
+pod "router-default-6fbc577945-rhzv8" deleted
+pod "router-default-6fbc577945-zfgwp" deleted
+
+[jegan@tektutor.org ~]$ oc -n openshift-console get pods
+NAME                         READY   STATUS              RESTARTS   AGE
+console-7644f4994f-449vg     0/1     ContainerCreating   1          19h
+console-7644f4994f-gm8qk     0/1     ContainerCreating   1          19h
+downloads-86d9bcf76d-9tmjm   0/1     ContainerCreating   1          19h
+downloads-86d9bcf76d-xzkm2   0/1     ContainerCreating   1          19h
+
+[jegan@tektutor.org ~]$ oc -n openshift-console get pods -w
+NAME                         READY   STATUS              RESTARTS   AGE
+console-7644f4994f-449vg     0/1     ContainerCreating   1          19h
+console-7644f4994f-gm8qk     0/1     ContainerCreating   1          19h
+downloads-86d9bcf76d-9tmjm   0/1     ContainerCreating   1          19h
+downloads-86d9bcf76d-xzkm2   0/1     ContainerCreating   1          19h
+console-7644f4994f-449vg     0/1     Running             1          19h
+
+[jegan@tektutor.org ~]$ oc -n openshift-console get pods -w -o wide
+NAME                         READY   STATUS              RESTARTS   AGE   IP            NODE                              NOMINATED NODE   READINESS GATES
+console-7644f4994f-449vg     0/1     Running             1          19h   10.130.0.23   master-3.ocp4.tektutor.org.labs   <none>           <none>
+console-7644f4994f-gm8qk     0/1     ContainerCreating   1          19h   <none>        master-1.ocp4.tektutor.org.labs   <none>           <none>
+downloads-86d9bcf76d-9tmjm   0/1     ContainerCreating   1          19h   <none>        master-1.ocp4.tektutor.org.labs   <none>           <none>
+downloads-86d9bcf76d-xzkm2   0/1     ContainerCreating   1          19h   <none>        master-3.ocp4.tektutor.org.labs   <none>           <none>
+console-7644f4994f-449vg     1/1     Running             1          19h   10.130.0.23   master-3.ocp4.tektutor.org.labs   <none>           <none>
+console-7644f4994f-gm8qk     0/1     Running             1          19h   10.128.0.56   master-1.ocp4.tektutor.org.labs   <none>           <none>
+console-7644f4994f-gm8qk     1/1     Running             1          19h   10.128.0.56   master-1.ocp4.tektutor.org.labs   <none>           <none>
+
+[jegan@tektutor.org ~]$ oc -n openshifconsole get service
+NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+console     ClusterIP   172.30.93.1      <none>        443/TCP   19h
+downloads   ClusterIP   172.30.113.169   <none>        80/TCP    19h
+
+[jegan@tektutor.org ~]$ oc get route --all-namespaces | grep console
+openshift-console          console                   console-openshift-console.apps.ocp4.tektutor.org.labs                                  console             https   reencrypt/Redirect     None
+openshift-console          downloads                 downloads-openshift-console.apps.ocp4.tektutor.org.labs                                downloads           http    edge/Redirect          None
 
 ## Lab - List all API Servers from all the master nodes present in the openshift cluster
 ```
