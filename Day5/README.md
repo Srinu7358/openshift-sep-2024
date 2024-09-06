@@ -591,3 +591,9 @@ crictl ps -a
 - for external access, we just need to expose the clusterip service as a route
 - we don't have use node-port service in openshift
 </pre>
+
+## Reference - some additional Openshift info you might be interested
+Red Hat Openshift also supports adding Windows Virtual Machines (nodes) into the Openshift cluster
+<pre>
+https://docs.openshift.com/container-platform/4.8/windows_containers/understanding-windows-container-workloads.html#understanding-windows-container-workloads
+</pre>
