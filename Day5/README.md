@@ -164,6 +164,42 @@ oc create route edge --service nginx --hostname nginx-jegan.apps.ocp4.tektutor.o
 
 Expected output
 
+## Lab - BuildConfig
+<pre>
+- BuildConfig is a Openshift component/resource
+- it is only supported in Openshift and not supported by Kubernetes
+- S2I depends on BuildConfig
+- In order to Build our custom applications from source code, BuildConfig resource is required
+- BuildConfig
+  - each time a new build runs, openshift creates an instance of BuildConfig called Build
+  - the Build Controller creates a Pod based on Build parameters definied in the Build resource
+  - Inside the Pod, the Build will clone the github repo
+  - builds your application and produces application binary
+  - prepares a Custom Container Image with your application binary
+  - deploys the Custom Container Image into Openshift's Internal Registry
+  - it supports source, docker S2I strategy
+</pre>
+	
+First create an image stream where the newly built application image will be stored
+```
+cd ~/openshift-sep-2024
+git pull
+cd Day5/BuildConfig
+oc create is tektutor-spring-hello
+```
+
+Expected output
+
+Now we can create the build config
+```
+cd ~/openshift-sep-2024
+git pull
+cd Day5/BuildConfig
+oc apply -f buildconfig.yml
+```
+
+
+
 ## Info - What is Continuous Integration?
 <pre>
 - Jenkins - is a CI Build Server
