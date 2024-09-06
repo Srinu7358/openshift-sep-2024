@@ -72,10 +72,21 @@ Examples
 
 ## Docker Overview
 <pre>
-- Docker is developed in Go lang by a company named Docker Inc
-- its comes in 2 flavours
-  1. Docker Community Edition
-  2. Docker Enterprise Edition
+- Docker is a Container Engine
+- Developed in Golang by a company called Docker Inc
+- comes in 2 flavours
+  1. Docker Community Edition - Docker CE ( Free )
+  2. Docker Enterprise Edition - Docker EE ( Paid )
+- follows Client/Server Architecture
+- Docker Registry
+  - collection of many Docker Images
+- Supports 3 types of Docker Registries
+  1. Local Docker Registry
+  2. Private Docker Registry
+    - setup using JFrog Artifactory or Sonatype Nexus
+  3. Remote Docker Registry
+    - website maintained by Docker Inc 
+    - provides many opensource docker images  
 </pre>
 
 ## High-Level Docker Architecture
