@@ -20,6 +20,24 @@ Expected output
 ![image](https://github.com/user-attachments/assets/d51dde4c-3386-4ac1-8884-6918b450023b)
 ![image](https://github.com/user-attachments/assets/44abd122-e018-4cba-81cb-961082a8885c)
 
+## Info - Troubleshooting web console
+In case, you are able to list the nodes in the openshift cluster but the web console is not accessible.
+
+```
+oc -n openshift-console get service
+oc -n openshift-console get pods
+
+oc -n openshift-ingress get pod -o json | \
+  jq -r '.items[].metadata.name' | \
+  xargs oc -n openshift-ingress delete pod
+
+oc -n openshift-console get pods -o wide -w
+oc -n openshifconsole get service
+oc get route --all-namespaces | grep console
+oc describe console -n openshift-console
+```
+
+
 ## Lab - List all API Servers from all the master nodes present in the openshift cluster
 ```
 oc get pods -n openshift-kube-apiserver -o wide
