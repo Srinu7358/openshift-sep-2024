@@ -111,6 +111,26 @@ oc delete -f required-affinity.yml
 oc label node worker02.ocp4.rps.com disk-
 ```
 
+## Lab - Deploying an angular js application into openshift using docker strategy
+```
+oc project
+oc new-app https://github.com/tektutor/openshift-sep-2024.git --strategy=docker --context-dir=Day4/angular/Angular-openshift-example
+oc get svc
+oc expose svc/openshift-sep-2024
+oc get route
+```
+
+Expected output
+![image](https://github.com/user-attachments/assets/914b43d6-dd7d-4fd5-ae9d-99f131136b56)
+![image](https://github.com/user-attachments/assets/ba7ccca8-9403-4fe6-b5dc-348f072a3e4d)
+![image](https://github.com/user-attachments/assets/24d7ef04-5426-417f-91e9-138cfdd64d61)
+![image](https://github.com/user-attachments/assets/3e5ed905-9eb5-47d4-9fdc-21c573b70ff4)
+![image](https://github.com/user-attachments/assets/fc6f166f-cd23-4891-ab67-c85bfaa4ca58)
+![image](https://github.com/user-attachments/assets/0794590f-977e-47c7-961b-ef8f8b82fdd1)
+![image](https://github.com/user-attachments/assets/2a51c617-ce6d-4919-a520-adb9a7f7b242)
+![image](https://github.com/user-attachments/assets/b6c0f2cd-b2d5-4439-bcc9-214ce6d9bf4f)
+
+
 ## Lab - Creating an edge route for nginx deployment
 
 Let's deploy nginx inside a project
