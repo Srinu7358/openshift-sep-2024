@@ -228,7 +228,9 @@ This build config does the following
 
 Create a secret with the JFrog Artifactory Login Credentials
 ```
-oc create secret docker-registry private-jfrog-image-registry
+oc create secret docker-registry private-jfrog-image-registry-new --docker-server=jfrogsep2024.jfrog.io --docker-username=your-jfrog-registered-email --docker-password=your-jfrog-password
+
+oc get secrets
 ```
 ## Info - What is Continuous Integration?
 <pre>
