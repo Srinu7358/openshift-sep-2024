@@ -168,7 +168,7 @@ Expected output
   - Nginx Container Image ( nginx:latest )
 </pre>  
 
-## Container Registries Overview
+## Container Registry Overview
 <pre>
 - Docker supports 3 types of Container Registries
   1. Local Docker Registry
