@@ -1,5 +1,26 @@
 # Day 1
 
+## About our lab environment
+- OnPrem Production grade Red Hat OpenShift setup 
+- System Configuration
+  - 48 virtual cores
+  - 755 GB RAM
+  - 17 TB HDD Storage
+- Oracle Linux v9.4 64-bit OS
+- KVM Hypervisor
+- 7 Virtual machines
+  - Master 1 with RHEL Core OS ( 8 Cores, 128GB RAM, 500 GB HDD )
+  - Master 2 with RHEL Core OS ( 8 Cores, 128GB RAM, 500 GB HDD )
+  - Master 3 with RHEL Core OS ( 8 Cores, 128GB RAM, 500 GB HDD )
+  - Worker 1 with RHEL Core OS ( 8 Cores, 128GB RAM, 500 GB HDD )
+  - Worker 2 with RHEL Core OS ( 8 Cores, 128GB RAM, 500 GB HDD )
+  - HAProxy Load Balancer, Bind DNS - Bastion Virtual Machine
+  - BootStrap Virtual Machine
+    - installs control plane components in master nodes
+    - creates an etcd cluster configured etcd pod instances from respective master nodes
+    - configures the HAProxy Load Balancer to act as a load-balancer the master nodes
+    - helps in installing worker node components and join to the worker nodes to the openshift cluster
+
 ## What is dual-booting or multi-booting?
 - Let's say we have a laptop with Windows 10 pre-installed and we need to do some prototype in Ubuntu
 - You can use a system utility called Boot Loader like LILO, Grub 1, Grub2
