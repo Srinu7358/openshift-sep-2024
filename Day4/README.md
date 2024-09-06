@@ -257,7 +257,7 @@ Expected output
   - when scale down happens a random pod within the deployment will be deleted
   - when scaled up a new pod with random name gets added 
   - hence scaling up/down a stateless application is easy and can be achieved with Deployment
-- Stateful
+- StatefulSet
   - supports Persistent Volume and Persistent Voluem Claims
   - each Pod get an unique and stable identify (name)
   - let's say we create a statefulset named mysql, its first pod will be named mysql-0 which is the sticky pod identify
