@@ -343,3 +343,53 @@ Now you should be able to access the openshift helloms route from cli or web bro
 ```
 oc get route
 curl http://openshift-hello-ms-jegan.apps.ocp4.rps.com
+```
+
+## Info - Troubleshooting NFS mount issues
+
+Reference - https://docs.openshift.com/container-platform/4.14/storage/persistent_storage/persistent-storage-nfs.html
+
+In case your Pods are unable to mount NFS shared folder, you need to enable nfs mounting within Openshift nodes as shown below
+
+```
+oc debug node/master-1.ocp4.training.tektutor
+chroot /host /bin/bash
+setsebool -P virt_use_nfs 1
+exit
+
+oc debug node/master-2.ocp4.training.tektutor
+chroot /host /bin/bash
+setsebool -P virt_use_nfs 1
+exit
+
+oc debug node/master-3.ocp4.training.tektutor
+chroot /host /bin/bash
+setsebool -P virt_use_nfs 1
+exit
+
+oc debug node/worker-1.ocp4.training.tektutor
+chroot /host /bin/bash
+setsebool -P virt_use_nfs 1
+exit
+
+oc debug node/worker-2.ocp4.training.tektutor
+chroot /host /bin/bash
+setsebool -P virt_use_nfs 1
+exit
+```
+
+## Info - In case you are curious to see the containers running inside openshift nodes
+```
+oc debug node/worker-1.ocp4.training.tektutor
+chroot /host /bin/bash
+podman version
+podman info
+crictl ps -a
+```
+
+## Blue Green vs Canary Deployment Strategy
+- blue-green and Canary deployments are two popular strategies for continuous delivery
+- aims to deliver software updates faster and more reliably
+- both methods, allows us release new version of software without disrupting the existing service
+- the main difference is that blue-green deployments switches all the traffic from old version(blue) to the new version(green) at once
+- while canary deployments gradually exposes a small percentage of the traffic to the new version(canary) and monitor its performance and user behaviour before rolling it out to the wider audience****
