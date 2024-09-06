@@ -1,11 +1,11 @@
 # Day 5
 
-## Post Test - kindly complete it 
+## Post Test - kindly complete it from the RPS Cloud Machine
 <pre>
 https://rpsconsulting116.examly.io/contest/public?U2FsdGVkX19TihCQwDRHmgXZDRlw9y6idLkuzas31HslpUGeBzcqEx8anFSWbG/DN/yZNwVSDWuWCKdgB5+DMw==
 </pre>
 
-## Feedback - Kindly share your training feedback here
+## Feedback - Kindly share your training feedback from the RPS Cloud Machine
 <pre>
 https://survey.zohopublic.com/zs/YCBTBf
 </pre>
