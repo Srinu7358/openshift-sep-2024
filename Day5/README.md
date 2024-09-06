@@ -397,6 +397,74 @@ curl -k https://functions-jegan.apps.ocp4.tektutor.org.labs
 
 Expected output
 
+## Kubernetes/Openshift Network Model
+For details information, you may refer
+<pre>
+https://kubernetes.io/docs/concepts/cluster-administration/networking/	
+</pre>	
+
+As we have good working knowledge in Kubernetes/Openshift, let's understand how Networking is done in Kubernetes/Openshift
+<pre>
+- As Openshift is based on Kubernetes, Openshift follows the same Kubernetes Networking Model
+- Kubernetes hasn't implemented the Network, instead it has given some network specifications to allow third party vendors to implement the network fabrics following the Kubernetes Network Specification
+- Kubernetes network model provides the foundation for understanding how containers, pods, and services within Kubernetes communicate with each other
+- Kubernetes/Openshift Network specification says
+  - Every pod gets its own IP address
+  - Containers within a pod share the pod IP address and can communicate freely with each other
+  - Pods can communicate with all other pods in the cluster using pod IP addresses (without NAT)
+  - Pod to Pod communication restrictions should be possible by defining network policies
+- Many third-party has implemented the above network specification in their own ways
+- Some of the popular Network implementations are
+  - Flannel, Calico and Weave from 3 different vendors
+</pre>	
+
+## Flannel Overview
+<pre>
+- one of the oldest and most mature CNI plugins available
+- is a simple, lightweight layer 3 fabric for Kubernetes
+- uses Overlay Network
+- developed by CoreOS
+- operates on Layer 3 of the OSI model and uses the VX-LAN as its default backend to move network packets between nodes
+- provides access to basic networking features and requires limited amount of administration to set up and maintain
+- supports a variety of backends like VX-LAN, host-gateway, AWS VPC, AliVPC, IPIP, and IPSec etc., 
+- overlay network is a network that is layered on top of another network
+- overlay network can be used to handle pod-to-pod traffic between nodes 
+- Overlay networks work by encapsulating network packets
+- when a pod initiates a connection to an IP address outside of the cluster, the node hosting the pod will use SNAT (Source Network Address Translation) to map the source address of the packet from the pod IP to the node IP
+- is a great entry level choice for Kubernetes cluster networking
+- drawbacks
+  - doesn't support Network Policy
+  - as each packets are encapsulated by sender and de-encapsulated by the receiver it impacts overvall network performance negatively
+</pre>
+
+## Calico Overview
+<pre>
+- Calico 
+  - implemented by company called Tigera
+  - comes in 2 flavours
+    - opensource and
+    - enterprise
+  - most popular and commonly used in Kubernetes/Openshift CNI
+  - provides both Network and Network Policy
+  - operates on Layer 3 of the OSI model and uses the BGP(Border Gateway Protocol) protocol to move network packets between nodes
+  - BGP is one of the fundamental building blocks of the internet, with exceptional scaling characteristics
+  - Using BGP, Calico directs packets natively, without needing to wrap them in additional layers of encapsulation
+
+</pre>	
+
+## Weave Overview
+<pre>
+- is a flexible networking solution for Kubernetes/Openshift clusters
+- developed by a company called WeaveWorks
+- Weave comes in 2 flavours
+  - opensource and paid
+- weave routes packets using fast datapath method
+- weave routes packets uses a slower network method called sleeve packet forward when fast datapath fails
+- is easy to install and configure
+- creates a mesh overlay network to connect all the nodes in the cluster
+- Weave is a good choice for organizations that need a flexible and scalable networking solution for their Kubernetes/Openshift clusters	
+</pre>
+
 # Bonus Labs (Optional - not in our training agenda)
 
 ## Lab - Finding more details about Openshift Private Image Registry
@@ -519,6 +587,68 @@ podman version
 podman info
 crictl ps -a
 ```
+
+## Lab - Getting inside a Pod using its deployment name
+```
+oc rsh deploy/nginx
+```
+
+## Lab -  Getting inside a specific Pod shell
+```
+oc get po
+oc rsh nginx-78644964b4-jg7wz
+```
+
+## Lab - Deploying application using a container image from OpenShift's Private Registry
+
+Find the nginx image from your OpenShift private registry
+```
+oc get imagestream --all-namespaces | grep nginx
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ oc get imagestream --all-namespaces | grep nginx
+jegan       nginx                                                image-registry.openshift-image-registry.svc:5000/jegan/nginx                                                    latest                                                   24 minutes ago
+openshift   nginx                                                image-registry.openshift-image-registry.svc:5000/openshift/nginx                                                1.18-ubi7,1.18-ubi8,1.20-ubi7,1.20-ubi8 + 1 more...      2 days ago
+</pre>
+
+```
+oc new-app image-registry.openshift-image-registry.svc:5000/jegan/nginx
+```
+
+You will have to replace the image with your image.
+
+
+## Lab - Deploying an application using a container image from Docker Hub
+```
+oc new-app bitnami/nginx
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ oc new-app bitnami/nginx
+--> Found container image 82fc406 (13 hours old) from Docker Hub for "bitnami/nginx"
+
+    * An image stream tag will be created as "nginx:latest" that will track this image
+
+--> Creating resources ...
+    imagestream.image.openshift.io "nginx" created
+    deployment.apps "nginx" created
+    service "nginx" created
+--> Success
+    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
+     'oc expose service/nginx' 
+    Run 'oc status' to view your app.
+(jegan@tektutor.org)$ oc status
+In project jegan on server https://api.ocp.tektutor.org:6443
+
+svc/nginx - 172.30.57.123 ports 8080, 8443
+  deployment/nginx deploys istag/nginx:latest 
+    deployment #2 running for 14 seconds - 1 pod
+    deployment #1 deployed 18 seconds ago
+
+1 info identified, use 'oc status --suggest' to see details.
+</pre>
 
 ## Blue Green vs Canary Deployment Strategy
 - blue-green and Canary deployments are two popular strategies for continuous delivery
