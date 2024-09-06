@@ -185,10 +185,15 @@ First create an image stream where the newly built application image will be sto
 cd ~/openshift-sep-2024
 git pull
 cd Day5/BuildConfig
-oc create is tektutor-spring-hello
+oc create imagestream tektutor-spring-hello
+oc describe imagestream/tektutor-spring-hello
 ```
 
 Expected output
+![image](https://github.com/user-attachments/assets/a3a86507-07c5-4c3a-8985-569bf19dc196)
+![image](https://github.com/user-attachments/assets/54d1e26b-5712-4eaf-9e12-c2fe947a54ec)
+![image](https://github.com/user-attachments/assets/ca8d7a50-108c-44dc-9721-44975bf9aecd)
+
 
 Now we can create the build config
 ```
@@ -196,7 +201,14 @@ cd ~/openshift-sep-2024
 git pull
 cd Day5/BuildConfig
 oc apply -f buildconfig.yml
+oc logs -f bc/spring-hello
 ```
+Expected output
+![image](https://github.com/user-attachments/assets/fa3c9b96-b6e8-45b7-82b7-a111d660137f)
+![image](https://github.com/user-attachments/assets/fd2b185c-b8d8-4280-8338-d1667bfe63f4)
+![image](https://github.com/user-attachments/assets/b471e56c-0ca3-4c82-88ac-ac9b8e9e68e8)
+![image](https://github.com/user-attachments/assets/1f773cc9-f5e1-400f-862e-fb484a44923e)
+![image](https://github.com/user-attachments/assets/23dfee9b-1bd8-4ff0-a224-516dedd6e759)
 
 
 
